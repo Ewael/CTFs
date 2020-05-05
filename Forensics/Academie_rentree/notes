@@ -1,0 +1,15 @@
+dump in downloads, too large for git
+
+strings dmp.mem | grep HOST
+
+hostname = challenge.fcsc
+
+strings dmp.mem | grep /home
+
+user = Lesage
+
+strings dmp.mem | grep amd64
+
+version = 5.4.0-4-amd64
+
+FCSC{challenge.fcsc:Lesage:5.4.0-4-amd64}

@@ -1,0 +1,14 @@
+#flag is user input
+
+we can execute checkFlag in console -> maybe can see flag
+
+- checkFlag not that interesting, but check is
+- check is a call to c function check
+
+found encoded string in .wasm:
+E@P@x4f1g7f6ab:42`1g:f:7763133;e0e;03`6661`bee0:33fg732;b6fea44be34g0~
+
+cyberchief finds fcsc in it:
+XOR({'option':'Hex','string':'3'},'Standard',false)
+
+FCSC{7e2d4e5ba971c2d9e944502008f3f830c5552caff3900ed4018a5efb77af07d3}

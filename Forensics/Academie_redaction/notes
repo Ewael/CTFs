@@ -1,0 +1,8 @@
+cant dump note.docx with [vola] linux_find_file
+-> not in -L or enum
+
+https://wiki.fileformat.com/word-processing/docx/
+
+strings dmp.mem| grep '<w:p>' -A 10
+
+FCSC{PQHJRTSFYH-3467024-LSHRFLDFGA}

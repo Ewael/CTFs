@@ -1,0 +1,6 @@
+input vuln:
+
+a = secret_a
+b = secret_b
+
+FCSC{4496d11d19db92ae53e0b9e9415d99d877ebeaeab99e9e875ac346c73e8aca77}

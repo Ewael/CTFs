@@ -1,0 +1,3 @@
+openssl enc -aes-128-ctr -d -K 00112233445566778899aabbccddeeff -iv 0 -in flag.jpg.enc > flag.jpg
+
+FCSC{879C2FEE3B9EFBC651050F881841D209}

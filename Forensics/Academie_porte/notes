@@ -1,0 +1,11 @@
+[vola] pstree | grep bash -C 10
+-> pid 1515 ncat
+
+[vola] linux_netstat | grep 1515
+-> IPv6: fd:6663:7363:1000:55cf:b9c6:f41d:cc24
+-> port à l'ecoute: 36280
+
+[vola] linux_pidhashtable | grep 1515
+-> 2020-03-26 23:24:20
+
+FCSC{36280:fd:6663:7363:1000:55cf:b9c6:f41d:cc24:2020-03-26 23:24:20}

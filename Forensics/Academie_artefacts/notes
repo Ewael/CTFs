@@ -1,0 +1,12 @@
+use --profile=Linuxdebian_5_4_0-4-amd64x64
+
+[vola] linux_psscan | grep 1254
+-> pid 1254 = pool-xfconfd
+
+[vola] linux_bash
+cmd = nmap -sS -sV 10.42.42.0/24
+
+[vola] linux_netscan | grep ESTABLISHED
+n = 13
+
+FCSC{pool-xfconfd:nmap -sS -sV 10.42.42.0/24:13}

@@ -1,0 +1,21 @@
+volatility -f memory.dmp imageinfo -> get profile
+
+psscan and pstree -> we see that pid 3564 is executed after update so we dump it
+-> volatility -f memory.dmp --profile=Win7SP1x86_23418 memdump -p 3564 --dump-dir .
+
+strings 3564.dmp | grep encry -> flag.txt
+
+we dump the flag.txt but it is encrypted ->
+volatility -f memory.dmp --profile=Win7SP1x86_23418 filescan | grep flag.txt
+volatility -f memory.dmp --profile=Win7SP1x86_23418 dumpfiles -Q 0x000000003ed139f0 -D . -u -n
+
+found key.txt and dumped it:
+0ba883a22afb84506c8d8fd9e42a5ce4e8eb1cc87c315a28dd
+
+found the update_v0.5.exe which crypted the file
+-> ghidra finds encryptfile function
+
+tried xor with the key as shown in ghidra but doesnt work -> will try on windows vm
+and it worked! :P
+
+FCSC{324cee8fe3619a8bea64522eadf05c84df7c6df9f15e4cab4d0e04c77b20bb47}

@@ -1,0 +1,11 @@
+fopen pour ouvrir 'flag' -> X
+system pour appeler 'cat' -> X
+
+echanger strlen avec system et arguments de system - ceux de strlen
+
+>>> 6c2
+>>> 72
+>>> sh
+cat flag
+
+FCSC{b4cbc07a77bb0984b994c9e34b2897ab49f08524402c38621a38bc4475102998}
