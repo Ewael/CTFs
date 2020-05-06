@@ -1,5 +1,7 @@
 http://challenges2.france-cybersecurity-challenge.fr:5007/index.php
 
+v1: { allCooks (filter: { firstname: {like: "%allo%"}}) { nodes { firstname, lastname, speciality, price }}}
+
 after some errors trying to escape we see errors and decalage in number of error so more chars in request
 = somethhing more is tested
 
