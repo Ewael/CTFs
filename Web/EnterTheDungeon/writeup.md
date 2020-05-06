@@ -2,7 +2,7 @@
 
 Auteur: Ewaël
 
-**EnterTheDungeon** est un des challenges web à 25 points du FCSC 2020 et dont voici l énoncé:
+**EnterTheDungeon** est un des challenges web à 25 points du FCSC 2020 et dont voici l'énoncé:
 
 ![EnterTheDungeon](enterthedungeon.png)
 
