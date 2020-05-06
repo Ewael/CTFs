@@ -98,7 +98,7 @@ class Comparator(object):
         return flag
 ```
 
-On en déduit avec l'énoncé à côté que le but est d'envoyer deux fichiers différents, mais qui ont le même *sha1sum*. Il existe plein d'outils capables de générer de tels fichiers qui provoqueront une collision à l'origine du problème de l'énoncé. J'ai utilisé
+J'en déduis avec l'énoncé à côté que le but est d'envoyer deux fichiers différents, mais qui ont le même *sha1sum*. Il existe plein d'outils capables de générer de tels fichiers qui provoqueront une collision à l'origine du problème de l'énoncé. J'ai utilisé
 
 [http://alf.nu/SHA1](http://alf.nu/SHA1)
 
