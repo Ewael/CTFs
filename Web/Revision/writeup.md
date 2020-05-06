@@ -104,6 +104,6 @@ On en déduit avec l'énoncé à côté que le but est d'envoyer deux fichiers d
 
 Après avoir suivi les instructions, j'upload les deux fichiers générés et je récupère le flag.
 
-[flag](flag.png)
+![flag](flag.png)
 
 `FCSC{8f95b0fc1a793e102a65bae9c473e9a3c2893cf083a539636b082605c40c00c1}`
