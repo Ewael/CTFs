@@ -1,6 +1,6 @@
 # Bestiary
 
-Auteur : Ewaël
+Auteur: Ewaël
 
 **Bestiary** est un des challenges web à 100 points du FCSC 2020 et dont voici l'enoncé:
 
