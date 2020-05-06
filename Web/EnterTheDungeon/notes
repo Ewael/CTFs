@@ -1,8 +1,7 @@
 http://challenges2.france-cybersecurity-challenge.fr:5002/
 
 /check_secret.txt
--> check is impossible: md5(x) = x
--> $_SESSION['dungeon_master'] = 0;
+-> must validate md5(x) = x
 
 loose comparison -> try juggling type
 
