@@ -22,11 +22,11 @@ en
      0040099b 74 0e                                   JZ           LAB_004009ab
 ```
 
-afin d'inverser la condition et d'afficher le message de victoire en cas d'échec. Et effectivement, ça fonctonne, mais ça n'a aucun intérêt à part... Afficher un gentil message au lieu de'un méchant message.
+afin d'inverser la condition et d'afficher le message de victoire en cas d'échec. Et effectivement, ça fonctonne, mais ça n'a aucun intérêt à part... Afficher un gentil message au lieu d'un méchant message.
 
 ![testjz](testjz.png)
 
-Je remarque aussi qu'il faut retirer 40 00 00 à l'addresse affichée sur Ghidra pour que ça fonctionne, la programme commençant à cette adresse pour une raison inconnue. Ma prochaine idée est de m'intéresser à la fonction `fopen` dans cette partie du code:
+Je remarque aussi qu'il faut retirer 40 00 00 à l'addresse affichée sur Ghidra pour que ça fonctionne, la programme commençant à cette adresse pour une raison inconnue. Ma prochaine idée est alors de m'intéresser à la fonction `fopen` dans cette partie du code:
 
 ```C
   ...
@@ -65,4 +65,42 @@ Ma troisième idée est donc d'exploiter l'appel à `system` au début de la fon
     ...
 ```
 
-Je me dis qu'en changeant un byte il existe peut-être un moyen de garder l'appel à `system` ouvert à la manière d'un `cat -`, mais encore une fois, mauvaise piste car je n'arrive à rien en un seul byte. 
+Je me dis qu'en changeant un byte il existe peut-être un moyen de garder l'appel à `system` ouvert à la manière d'un `cat -`, mais encore une fois, mauvaise piste car je n'arrive à rien en un seul byte.
+
+On m'a ensuite expliqué le lien entre l'appel d'une fonction et ce qu'il se passait au niveau et la GOT/PLT. Ainsi en changeant l'appel de `strlen` à `strlen`, à `system`, c'est `system` qui sera exécuté avec pour argument la chaine passée à `strlen`. Sous Ghidra, c'est sûrement plus clair:
+
+![strlen](strlen.png)
+
+Je patch le binaire au niveau de la chaine en vert ci-dessus pour pointer non plus sur `strlen` mais `system`, qui sont juste à côté niveau adresse:
+
+![system](system.png)
+
+Donc,
+
+```
+004006c0    ff 25 6a 09 20 00   JMP     qword ptr [->strlen]
+```
+
+devient
+
+```
+004006c0    ff 25 72 09 20 00   JMP     qword ptr [->system]
+```
+
+Ainsi, lors du premier appel à `strlen`, c'est `choix` qui sera donné en paramètre à `system`:
+
+```C
+    ...
+    printf("Is this your first time here? [y/n]\n>>> ");
+    fgets(choix + 1,4,stdin);
+    len_name = strlen(choix + 1);
+    choix[len_name] = '\0';
+    if (choix[1] == 'y') break;
+    ...
+```
+
+Et voilà, plus qu'à tester, sans oublier que je ne peux passer que 4 caractères en paramètre, ce qui reste suffisant pour appeler `sh`:
+
+![flag](flag.png)
+
+`FCSC{b4cbc07a77bb0984b994c9e34b2897ab49f08524402c38621a38bc4475102998}`
