@@ -1,8 +1,8 @@
-# Catégorie intro
+# Catégorie - Intro
 
 Auteur: Ewaël
 
-Les challenges de cette catégorie valaient 20 points chacun, et servaient à introduire les différentes catégories du FCSC avec des challenges rapides et faciles, d'où ce seul writeup pour tous les expliquer.
+Les challenges de cette catégorie valaient 20 points chacun, et servaient à introduire les différentes catégories du FCSC 2020 avec des challenges rapides et faciles, d'où ce seul writeup pour tous les expliquer.
 
 ![intro](intro.png)
 
