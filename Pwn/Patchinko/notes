@@ -1,3 +1,5 @@
+nc challenges1.france-cybersecurity-challenge.fr 4009
+
 fopen pour ouvrir 'flag' -> X
 system pour appeler 'cat' -> X
 
