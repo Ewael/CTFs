@@ -7,7 +7,7 @@ in item we have:
 5e83642bd7b1600013655bba
 5e8ee635d7b1600013655bbd
 
-after searches -> magondb objectID:
+after searches -> mongodb objectID:
 
 a 4-byte timestamp value, representing the ObjectId’s creation, measured in seconds since the Unix epoch
 a 5-byte random value
