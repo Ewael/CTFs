@@ -1,0 +1,7 @@
+open in ghidra
+
+input is flag -> checkflag function
+
+-> use z3
+
+shkCTF{cl4ss1c_z3___t0_st4rt_:)}

