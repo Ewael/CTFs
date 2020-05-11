@@ -1,4 +1,4 @@
-[vola] pstree | grep bash -C 10
+[vola] linux_pstree | grep bash -C 10
 -> pid 1515 ncat
 
 [vola] linux_netstat | grep 1515
