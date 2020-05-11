@@ -8,7 +8,7 @@ C'était mon premier CTF, et j'ai pris un plaisir immense à accomplir chaque ch
 
 Ce repo contient, pour chaque challenge:
 
-- `writeup.md` qui est le writeup que j'ai rédigé **post** CTF, qui explique la résolution du challenge à ma manière.
+- `README.md` qui est le writeup que j'ai rédigé **post** CTF, qui explique la résolution du challenge à ma manière.
 
 - `notes` qui sont les notes que je prends **pendant** le CTF, elles me servent à garder une trace du raisonnement mais ne sont destinées qu'à moi, donc sont beaucoup moins claires qu'un writeup.
 
