@@ -16,6 +16,5 @@ found the update_v0.5.exe which crypted the file
 -> ghidra finds encryptfile function
 
 tried xor with the key as shown in ghidra but doesnt work -> will try on windows vm
-and it worked! :P
 
 FCSC{324cee8fe3619a8bea64522eadf05c84df7c6df9f15e4cab4d0e04c77b20bb47}
