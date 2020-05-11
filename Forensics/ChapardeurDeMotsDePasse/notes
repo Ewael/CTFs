@@ -1,0 +1,33 @@
+UDP 12
+
+TCP 3 -> www.aldskkiom7sbi4gclbeh.com0 and www.6ukmsfoqt.net0
+TCP 30 -> GET /lmpUNlwDfoybeulu/gate.php HTTP/1.1
+TCP 59 -> GET /o96xEVtEmxfoYNxf/gate.php HTTP/1.1
+TCP 84 -> GET /WjXxdpfqDyEE45gr/gate.php HTTP/1.1
+
+TCP 93
+-> GET /Ym9ubmVfcGlzdGVf/gate.php HTTP/1.1
+-> POST /Ym9ubmVfcGlzdGVf/gate.php HTTP/1.1
+
+GET success.txt -> wrong way
+
+KPOT V2.0 is stealer -
+> gotta find the key to decrypt xor data
+
+tried some stuff to decode C2 chain for both POST and GET requests but nothing
+
+what i must do is:
+- take GET.enc
+- from bas64
+- xor with plain
+-> key
+
+generate bf list:
+crunch 16 16 01 > crunch_01
+
+solved by xoring what we want with xored / b64ed get request to find key:
+tDlsdL5dv25c1Rhv
+
+then xor then hex of post with key:
+
+FCSC{469e8168718996ec83a92acd6fe6b9c03c6ced2a3a7e7a2089b534baae97a7}
