@@ -6,7 +6,7 @@ Auteur: Ewaël
 
 ![cryptolocker](cryptolocker.png)
 
-Je commence par voir si Volatility connait le profil, et coup de change, c'est le cas.
+Je commence par voir si Volatility connait le profil, et coup de chance, c'est le cas.
 
 ![profil](profil.png)
 
