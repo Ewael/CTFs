@@ -2,7 +2,7 @@
 
 Auteur: Ewaël
 
-**Académie de l'investigation - Rédaction** est un des challenges forensics du FCSC 2020. Il valait 42 à la fin du CTF.
+**Académie de l'investigation - Rédaction** est un des challenges forensics du FCSC 2020. Il valait 42 points à la fin du CTF.
 
 ![redaction](redaction.png)
 
