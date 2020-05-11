@@ -10,7 +10,7 @@ J'ouvre directement la capture réseau dans Wireshark et décide de follow les �
 
 [https://www.proofpoint.com/us/threat-insight/post/new-kpot-v20-stealer-brings-zero-persistence-and-memory-features-silently-steal](https://www.proofpoint.com/us/threat-insight/post/new-kpot-v20-stealer-brings-zero-persistence-and-memory-features-silently-steal)
 
-Je comprends qu'il s'agit d'un stealer et vois que le moyen d'intéragir avec le C&C panel est une request finissant par "gate.php". Je décide de voir ce que je peux en tirer en recherchant les request contenant ce terme dans Wireshark. Après quelques streams sans intérêt ou avec des *403 Forbidden*, j'en trouve une que je vais pouvoir exploiter.
+Je comprends qu'il s'agit d'un stealer et vois que le moyen d'intéragir avec le C&C panel est une request finissant par "gate.php". Je décide de voir ce que je peux en tirer en recherchant les request contenant ce terme dans Wireshark. Après quelques streams sans intérêt ou avec des *403 Forbidden*, j'en trouve un que je vais pouvoir exploiter.
 
 ![gate](gate.png)
 
