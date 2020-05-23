@@ -23,7 +23,7 @@ Le problème, c'est que je n'en tire pas grand chose. Pareil du côté des hosts
 
 [http://pims.tuxfamily.org/blog/2010/05/nouvelle-technique-de-lfi-les-filtres-php](http://pims.tuxfamily.org/blog/2010/05/nouvelle-technique-de-lfi-les-filtres-php/)
 
-J'essaie donc de passer par le base 64 en envoyant `/index.php?monster=php://filter/read=convert.base64-encode/resource=index.php` et ça fonctionne, on décode la chaine renvoyée et on récupère notre joli *index.php*:
+J'essaie donc de passer par le base 64 en envoyant `/index.php?monster=php://filter/read=convert.base64-encode/resource=index.php` et ça fonctionne, je décode la chaine renvoyée et je récupère mon joli *index.php*:
 
 ```php
 <?php
