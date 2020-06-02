@@ -1,6 +1,6 @@
 # CTFs
 
-This repo contains every files I made during my CTFs. Here is a list of every CTFs I participated to. You can find a README.md in each repo with informations about writeups and the CTF. For each challenge:
+This repo contains every files I made during my CTFs. Here is a list of every CTFs I participated to. You can find a `README.md` in each **repo** with informations about writeups and the CTF. For each **challenge**:
 
 - `README.md` is my personnal writeup of the challenge. It can be detailed or not depending on the things I've learned during the challenge and how much I appreciated it. Some may not even have a writeup if it was something I already knew about or if it was not interesting for me.
 
