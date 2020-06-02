@@ -1,0 +1,5 @@
+xored imgs
+
+convert chal.png goose_stole_the_key.png -fx "(((255*u)&(255*(1-v)))|((255*(1-u))&(255*v)))/255" xored.png
+
+castorsCTF{m355_w1th_7h3_h0nk_y0u_g3t_7h3_b0nk}

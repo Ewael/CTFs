@@ -1,0 +1,4 @@
+jpg format -> del first bytes and last bytes to respect it
+use script
+
+castorsCTF{H3r3_Is_y0uR_Fl4gg}

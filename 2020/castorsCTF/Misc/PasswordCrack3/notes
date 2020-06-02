@@ -1,0 +1,9 @@
+wrap rockyou words in flag format with script then bf attack
+
+7adebe1e15c37e23ab25c40a317b76547a75ad84bf57b378520fd59b66dd9e12
+
+cat /usr/share/wordlists/rockyou.txt| grep ^thef > thef
+while read -r line; do echo -n "castorsCTF{""$line""}" | sha256sum >> thef_hashes; done < thef
+grep 7adebe1e15c37e23ab25c40a317b76547a75ad84bf57b378520fd59b66dd9e12 thef_hashes -n
+
+castorsCTF{theformat!}

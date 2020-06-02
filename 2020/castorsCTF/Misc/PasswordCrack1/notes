@@ -1,0 +1,5 @@
+given string = 3c80b091de0981ec64e43262117d618a
+
+john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt hash
+
+castorsCTF{irocktoo}

