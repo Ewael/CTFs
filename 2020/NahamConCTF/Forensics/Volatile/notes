@@ -1,0 +1,4 @@
+python ~/volatility/vol.py -f memdump.raw --profile Win7SP1x86_23418
+cmdscan
+
+JCTF{nice_volatility_tricks_bro}

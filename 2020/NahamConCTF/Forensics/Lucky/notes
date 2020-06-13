@@ -1,0 +1,7 @@
+/opt/bruteforce-luks/bruteforce-luks -v 5 -f /usr/share/wordlists/rockyou.txt lucky.img
+
+pass = iloveyou
+cryptsetup open lucky.img lucky
+mount /dev/mapper/lucky lucky
+
+flag{lucky_it_was_an_easy_password}

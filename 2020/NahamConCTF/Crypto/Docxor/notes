@@ -1,0 +1,7 @@
+xxd -> we see patterns
+in hex: 5a4199bb = key
+
+xor with cyberchef -> zip file
+unzip then cat */* | grep flag
+
+flag{xor_is_not_for_security}

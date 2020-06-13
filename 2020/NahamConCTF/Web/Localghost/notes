@@ -1,0 +1,6 @@
+in jscroll
+_0xbcec variable
+_0xbcec[6] = "SkNURntzcG9vb29va3lfZ2hvc3RzX2luX3N0b3JhZ2V9"
+-> base64 -d
+
+JCTF{spoooooky_ghosts_in_storage}
