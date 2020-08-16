@@ -1,0 +1,8 @@
+apparently some bits are missing at head and tail
+lets use https://gchq.github.io/CyberChef
+
+i see that nothing changes if i add bnits at the end
+but it does change when adding 1 and 0 at the beginning
+just add 6 zeros
+
+CCTF{it5_3n0u9h_jU5T_tO_sH1ft_M3}
