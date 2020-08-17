@@ -2,6 +2,8 @@
 
 Author: Ewaël - following [the writeup from the Cryptohack team](https://blog.cryptohack.org/cryptoctf2020#decent-rsa)
 
+![enonce](enonce.png)
+
 Let's start by extracting the parameters from the public key:
 
 ```
