@@ -1,0 +1,29 @@
+check if rsa encryption of input is the same as flag one
+
+00100e9b    CALL    memcpy
+00100ea0    MOV     qword ptr [RBP + rsa_params],0x0
+
+00100f07    CALL   d2i_PrivateKey_bio
+00100f0c    MOV    qword ptr [RBP + private_key],len_input
+
+00100f33    CALL   EVP_PKEY_get1_RSA
+00100f38    MOV    qword ptr [RBP + rsa_params],len_input
+
+00100f76    CALL   RSA_private_encrypt
+00100f7b    MOV    dword ptr [RBP + local_b14],len_input
+
+00100fae    CALL   memcmp
+00100fb3    TEST   is_false,is_false
+
+b *0x0000555555554e9b
+b *0x0000555555554f07
+b *0x0000555555554f38
+b *0x0000555555554f76
+b *0x0000555555554fae
+
+private_key = 0x600000006
+rsa_params = 0x0
+len_enc = 0x80
+
+rsi = enc_flag
+rdi = enc_input
