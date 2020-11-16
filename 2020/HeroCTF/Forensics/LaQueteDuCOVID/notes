@@ -1,0 +1,26 @@
+strings | grep HOSTNAME
+
+Hero{boris:boris-PC-Security}
+
+9c93f453dc80 TCP      ::              :   80 ::              :    0 LISTEN
+9c93f5c00000 TCP      ::1             :45849 ::              :    0 CLOSE
+9c93f5c00940 TCP      ::1             :  631 ::              :    0 LISTEN
+9c93f7d3a300 TCP      127.0.0.53      :   53 0.0.0.0         :    0 LISTEN
+9c93f7d3cec0 TCP      127.0.0.1       :  631 0.0.0.0         :    0 LISTEN
+9c93f7d3e040 TCP      0.0.0.0         :    0 0.0.0.0         :    0 CLOSE
+9c93f7d3e900 TCP      10.0.2.15       :49204 146.59.156.82   : 4444 ESTABLISHED
+9c93f8626c00 TCP      174.221.25.122  :    6 150.163.33.81   :    0 CLOSE
+9c93f9759bc0 TCP      ::1             :58755 ::              :    0 CLOSE
+9c93faa04e40 TCP      ::              :    6 ::              :    0 CLOSE
+9c93faa05300 TCP      ::              :    6 ::              :    0 CLOSE
+9c93faa06f80 TCP      ::              :    6 ::              :    0 CLOSE
+9c93fc361300 TCP      ::              :    6 ::              :    0 CLOSE
+9c93fc362f80 TCP      ::              :    6 ::              :    0 CLOSE
+9c93fcd2ec00 TCP      170.109.153.122 :    6 150.35.145.85   :    0 CLOSE
+9c93fcd2f800 TCP      170.109.141.122 :    6 150.55.145.85   :    0 CLOSE
+
+python2 /opt/volatility/vol.py --profile=LinuxUbuntu_5_4_0-52-generic_profilex64 -f Challenge.mem linux_pslist | grep 1953 -C 3
+
+Hero{146.59.156.82:4444:20:42:27}
+
+Hero{covid:2461:resultat_analyse.txt}

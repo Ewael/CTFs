@@ -1,0 +1,7 @@
+http://challs.heroctf.fr:8080/?give_flag=
+
+spaces and _ are filtered
+
+PHP repalce dots with _
+
+Hero{h0w_70_pr36_m47ch_10381}

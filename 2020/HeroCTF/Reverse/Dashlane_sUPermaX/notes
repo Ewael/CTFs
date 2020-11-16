@@ -1,0 +1,7 @@
+upx -d [bin]
+to unpack
+
+-> checkpasswd fun
+gdb to get all chars at each cmp
+
+Hero{x86_64_m4st3r0101}

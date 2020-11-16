@@ -1,0 +1,4 @@
+keepass2john s3cr3t.kdb > tobecracked.hash
+hashcat -m 13400 -a 0 -w 1 tobecracked.hash /usr/share/wordlists/rockyou.txt
+
+Hero{jesuscristo}

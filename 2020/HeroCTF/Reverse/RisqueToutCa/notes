@@ -1,0 +1,7 @@
+qemu-riscv64 -L /usr/riscv64-linux-gnu -g 1234 ./risque
+
+=> ghidra check_password
+avoid traps in gdb and chekc comparison at 0x40000009d0
+letter in $a4
+
+Hero{L0v3_R1sc}

@@ -1,0 +1,7 @@
+This PDF document embeds file aeb793fd
+
+deadbeef1234 in `strings tchoupi.jpg`
+
+steghide extract -sf tchoupi.png with password
+
+Hero{B3_C4R3FUL}

