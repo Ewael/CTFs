@@ -3,4 +3,6 @@ python2 -c 'print "A"*512 + "BBBB"' | ./BOO_3
 BBB is eip but nowhere to go + shellcode segfaults -> non executable?
 hackername addr is not executable (0x0804c040)
 
-could be ret2libc but flemme
+could be ret2libc
+
+=> CHALLENGE SOLVED AFTER THE CTF
