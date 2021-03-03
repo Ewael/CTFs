@@ -1,6 +1,6 @@
 # aeroCTF
 
-**CeroTF** was organized by the AeroCTF team. *19 Sept. 2020, 00:00 UTC - 21 Sept. 2020, 00:00 UTC*
+**CeroTF** was organized by the AeroCTF team. *Sat, 27 Feb. 2021, 09:00 UTC — Sun, 28 Feb. 2021, 09:00 UTC*
 
 **! This repo does not contain any writeup !**
 
