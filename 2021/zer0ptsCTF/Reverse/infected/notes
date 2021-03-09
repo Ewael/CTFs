@@ -1,0 +1,19 @@
+https://github.com/libfuse/libfuse/blob/master/example/cuse.c
+https://github.com/libfuse/libfuse/blob/master/include/cuse_lowlevel.h
+
+https://github.com/libfuse/libfuse
+-> https://github.com/libfuse/libfuse/issues/15
+
+nc any.ctf.zer0pts.com 11011
+nc others.ctf.zer0pts.com 11011
+
+backdoor in /etc
+
+notes tanguy
+
+backdoor c'est un driver userland (fuse) pour /dev/backdoor
+Si tu le reverse tu vois que quand il reçoit un write avec "b4ckd00r:<nom de fichier>:<nombre>"
+Il fait un chmod du fichier avec comme mode le nombre
+Tu peux t'add dans /etc/passwd
+Comme t'es dans le groupe sudo tu peux t'ajouter une règle NOPASSWD dans /etc/sudoers
+Et ensuite t'as plus qu'a sudo /bin/sh pour avoir un shell root

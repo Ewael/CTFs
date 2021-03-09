@@ -22,3 +22,7 @@ This repo contains every files I made during my CTFs. Here is a list of every CT
 
 - McAfeeCTF (LSE)
 - aeroCTF (LSE)
+- zer0ptsCTF (LSE)
+- BSidesSFCTF (LSE)
+- NahamConCTF (coming)
+- UTCTF (LSE) (coming)
