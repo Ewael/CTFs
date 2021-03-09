@@ -1,0 +1,3 @@
+nc -v reverseme2-24b392b5.challenges.bsidessf.net 1339
+
+CTF{again_me_reverse}

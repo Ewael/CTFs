@@ -1,0 +1,4 @@
+set tm_admin to 1
+set tm_user to md5 of admin 21232f297a57a5a743894a0e4a801fc3
+
+CTF{iAmAdm1n}

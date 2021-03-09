@@ -1,0 +1,5 @@
+nc reverseme-53b7d3aa.challenges.bsidessf.net 1339
+
+shellcode xored with 0x41
+
+CTF{me_reverse}

@@ -1,0 +1,20 @@
+xz -d
+testdisk chimera.bin.img
+mount -t ext2 chimera.bin.img /media/chimera
+
+key.docx -> Thank you player, but your key is in another place.
+shim.png
+
+foremost > binwalk
+need pwd to unlock zip with flag.png
+
+some images seems crypted -> xor with plain?
+
+unzip key.docx -> python script with zip key
+zip key: eternalfiresofchimera
+
+flag.png is corrupted
+https://github.com/ctfs/write-ups-2015/tree/master/plaidctf-2015/forensics/png-uncorrupt
+
+python2 /opt/PCRT/PCRT.py -i flag.png -o output.png
+CTF{digital_metamorphism}
