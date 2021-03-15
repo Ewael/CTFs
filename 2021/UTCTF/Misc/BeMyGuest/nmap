@@ -1,0 +1,1 @@
+# Nmap 7.91 scan initiated Sun Mar 14 05:27:42 2021 as: nmap -Pn -oN nmap -v -A -p 8881 misc.utctf.live

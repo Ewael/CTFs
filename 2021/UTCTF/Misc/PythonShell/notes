@@ -1,0 +1,10 @@
+Blacklist: (eval)|(import)|(open)|(with)|(as)|(from)|(lambda)|(\s*print\s*=\s*)|(?P<paren>\()
+Whitelist: (\s*print\s*(?P<paren>\())
+
+f = open("/flag.txt", "r")
+print(f.read())
+f.close()
+
+python unicode escape
+
+utflag{unclean_input}

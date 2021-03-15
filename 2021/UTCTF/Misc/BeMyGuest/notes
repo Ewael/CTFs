@@ -1,0 +1,10 @@
+nmap misc.utctf.live -v -A -p 8881 -sC -sV -oN nmap8881
+nmap misc.utctf.live -v -A -p 8882 -sC -sV -oN nmap8882
+
+smb on both ports
+
+smbclient -L //misc.utctf.live/ -p 8881
+smbclient //misc.utctf.live/guest -p 8881 -U guest
+get flag.txt
+
+utflag{gu3st_p4ss_4_3v3ry0n3}

@@ -1,0 +1,23 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Sat Mar 13 06:22:53 2021
+Invocation: foremost out.txt 
+Output directory: /root/Secu/UTCTF/Beginner/Magic_Bytes/output
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: out.txt
+Start: Sat Mar 13 06:22:53 2021
+Length: 31 KB (32234 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+0:	00000000.png 	      31 KB 	          0 	  (1920 x 1080)
+Finish: Sat Mar 13 06:22:53 2021
+
+1 FILES EXTRACTED
+	
+png:= 1
+------------------------------------------------------------------
+
+Foremost finished at Sat Mar 13 06:22:53 2021

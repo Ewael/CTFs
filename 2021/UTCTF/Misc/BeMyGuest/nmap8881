@@ -1,0 +1,34 @@
+# Nmap 7.91 scan initiated Sun Mar 14 05:29:31 2021 as: nmap -v -A -p 8881 -sC -sV -oN nmap8881 misc.utctf.live
+Nmap scan report for misc.utctf.live (3.236.87.2)
+Host is up (0.092s latency).
+rDNS record for 3.236.87.2: ec2-3-236-87-2.compute-1.amazonaws.com
+
+PORT     STATE SERVICE     VERSION
+8881/tcp open  netbios-ssn Samba smbd 4.6.2
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose|storage-misc
+Running (JUST GUESSING): Linux 4.X|5.X|2.6.X|3.X (93%), Synology DiskStation Manager 5.X (85%)
+OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5 cpe:/o:linux:linux_kernel:2.6.32 cpe:/o:linux:linux_kernel:3.10 cpe:/a:synology:diskstation_manager:5.2 cpe:/o:linux:linux_kernel
+Aggressive OS guesses: Linux 4.15 - 5.6 (93%), Linux 5.0 - 5.4 (93%), Linux 2.6.32 (93%), Linux 4.4 (93%), Linux 5.0 - 5.3 (92%), Linux 4.0 (92%), Linux 2.6.32 or 3.10 (91%), Linux 5.4 (90%), Linux 2.6.32 - 2.6.35 (90%), Linux 2.6.32 - 2.6.39 (89%)
+No exact OS matches for host (test conditions non-ideal).
+Uptime guess: 46.572 days (since Tue Jan 26 14:47:26 2021)
+Network Distance: 17 hops
+TCP Sequence Prediction: Difficulty=263 (Good luck!)
+IP ID Sequence Generation: All zeros
+
+TRACEROUTE (using port 443/tcp)
+HOP RTT      ADDRESS
+1   5.34 ms  livebox.home (192.168.1.1)
+2   ...
+3   7.09 ms  ae117-0.ncidf303.rbci.orange.net (80.10.154.194)
+4   10.12 ms ae42-0.niidf301.rbci.orange.net (193.252.159.149)
+5   14.21 ms 81.253.184.6
+6   24.98 ms hundredgige0-3-0-0.lontr3.hounslow.opentransit.net (193.251.242.150)
+7   95.75 ms tengige0-4-0-5.ashtr2.ashburnva.opentransit.net (193.251.131.210)
+8   95.75 ms amazon-1.gw.opentransit.net (193.251.247.136)
+9   ... 16
+17  91.05 ms ec2-3-236-87-2.compute-1.amazonaws.com (3.236.87.2)
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Mar 14 05:30:40 2021 -- 1 IP address (1 host up) scanned in 68.68 seconds
