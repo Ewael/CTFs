@@ -1,0 +1,12 @@
+use burp to get all redirs
+-> not working
+
+get the diff char on each line
+unset i; while read -r l; do echo $l > "text$((++i)).txt";done < logs
+
+cmp text10.txt text11.txt -b -> diff is at byte 2877
+head -c 2877 text10.txt | tail -c 1
+
+for f in `ls text* -v`; do head -c 2877 $f | tail -c 1; done
+
+picoCTF{th4ts_k1nd4_n34t_0b0a1adf}
