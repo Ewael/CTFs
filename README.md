@@ -26,3 +26,7 @@ This repo contains every files I made during my CTFs. Here is a list of every CT
 - BSidesSFCTF (LSE)
 - NahamConCTF (LSE)
 - UTCTF (LSE)
+- picoCTF
+- SecurinetsQualsCTF (LSE)
+- VolgaCTF (LSE)
+- ShaktiCTF (LSE)
