@@ -1,0 +1,8 @@
+fix chunks
+
+PNG -> <89>
+IADT -> IDAT
+IHDR CRC error
+INED -> IEND
+
+shaktictf{Y4YyyyY_y0u_g0t_1T}

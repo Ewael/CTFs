@@ -1,0 +1,35 @@
+Reverse GroceryPlace
+
+vichyssoise
+mango
+vermouth
+zucotto
+sandwich
+lamb
+veal
+yogurt
+vermicelli
+zucchini
+salmon
+fennel seeds
+ice cream
+carrots
+unagi
+inca berries
+cabbage
+upma
+grapes
+naan
+apples
+bananas
+almonds
+basil
+fenugreek
+potatoes
+pie
+soy beans
+eggs
+tunafish
+
+Find the input to the following output.
+OUTPUT: 4cum77itQdKy4r7c~rm5u05plN

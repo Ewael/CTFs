@@ -1,0 +1,23 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Sat Apr  3 09:15:52 2021
+Invocation: foremost dumpit.exe 
+Output directory: /root/Secu/ShaktiCTF/Forensics/HelpMe/dumped/output
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: dumpit.exe
+Start: Sat Apr  3 09:15:52 2021
+Length: 195 KB (199680 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+0:	00000000.exe 	     195 KB 	          0 	 05/03/2011 05:23:10
+Finish: Sat Apr  3 09:15:52 2021
+
+1 FILES EXTRACTED
+	
+exe:= 1
+------------------------------------------------------------------
+
+Foremost finished at Sat Apr  3 09:15:52 2021

@@ -1,0 +1,23 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Sat Apr  3 08:13:22 2021
+Invocation: foremost chall.png 
+Output directory: /root/Secu/ShaktiCTF/Forensics/Delete/output
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: chall.png
+Start: Sat Apr  3 08:13:22 2021
+Length: 45 KB (46335 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+0:	00000000.png 	      45 KB 	         48 	  (1200 x 1200)
+Finish: Sat Apr  3 08:13:22 2021
+
+1 FILES EXTRACTED
+	
+png:= 1
+------------------------------------------------------------------
+
+Foremost finished at Sat Apr  3 08:13:22 2021

@@ -1,0 +1,9 @@
+cant execute it
+
+reverse statically
+-> when argc > 1 - decoding function is easier
+looks like base64 but notice the charset is different
+-> use cpp to get encoded str of dosomething
+then reverse dosomethinh in python
+
+shaktictf{d3c3pt10n_15_3v3rywh3r3}

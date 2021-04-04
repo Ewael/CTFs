@@ -1,0 +1,17 @@
+strings:
+''.join([chr(int(a)) for a in '98 106 66 48 100 71 103 48 100 71 86 104 78 88 107 61'.split(' ')])
+-> bjB0dGg0dGVhNXk= = n0tth4tea5y
+
+strings txt.galf = flag.txt
+-> reverse it -> zip file (tac -r -s 'x\|[^x]' download.dat > reversed.txt)
+
+corrupted -> zip -FF reversed.zip --out fixed.zip
+password protected -> n0tth4tea5y not working
+
+zip2john fixed.zip > hashes.txt
+john hashes.txt -wordlist=/usr/share/wordlists/rockyou.txt --pot=out.txt
+-> fail...
+
+just extract it again and use cyberchef instead of tac to reverse
+
+shaktictf{g00d_lUcK_4_tH3_n3xT_cH411eNg3}

@@ -1,0 +1,28 @@
+flag in 3 parts
+
+imageinfo:
+python2 /opt/volatility/vol.py --profile=Win7SP1x64 -f Challenge.vmem
+
+iehistory:
+C:/Users/alexander/Downloads/L4ST.py.txt
+C:/Users/alexander/Documents/Part%20II.png
+C:/Users/alexander/Downloads/L4ST.py
+
+0x000000007e269310     12      0 R--r-d \Device\HarddiskVolume1\Users\alexander\Documents\Part II.png
+0x000000007ec2c970      2      0 R--r-- \Device\HarddiskVolume1\Users\alexander\Downloads\L4ST.py.zip
+0x000000007f07b740     13      0 R--r-d \Device\HarddiskVolume1\Users\alexander\Downloads\DumpIt.exe
+
+dumpit.exe -> seems like a troll?
+
+png -> zsteg
+_y0U_l1k3d_
+
+dos2unix L4ST.py -> remove ^M
+sed -i '/^$/d' L4ST.py
+script checks last part of the flag
+-> reverse it
+th15_ch4lL3ng3!}
+
+cmdscan -> first part
+
+shaktictf{H0p3_y0U_l1k3d_th15_ch4lL3ng3!}
