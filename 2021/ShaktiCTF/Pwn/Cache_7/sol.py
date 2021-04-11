@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# script by Red - https://github.com/alexandrefresnais/CTFs/blob/master/ShaktiCTF_2021/pwn/Cache_7/xpl.py
+
 from pwn import *
 
 def create(io, size, content):
