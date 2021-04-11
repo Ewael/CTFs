@@ -1,8 +1,17 @@
-#!/usr/bin/env python3
+# GroceryList
 
-import string
+To begin with, we have a base 64 string:
 
-x = '''vichyssoise
+```
+UmV2ZXJzZSBHcm9jZXJ5UGxhY2UKCnZpY2h5c3NvaXNlICAgICAgICAgICAgIAptYW5nbyAgICAgICAgICAgICAgICAgICAKdmVybW91dGgKenVjb3R0bwpzYW5kd2ljaApsYW1iCnZlYWwKeW9ndXJ0CnZlcm1pY2VsbGkKenVjY2hpbmkKc2FsbW9uCmZlbm5lbCBzZWVkcwppY2UgY3JlYW0KY2Fycm90cwp1bmFnaQppbmNhIGJlcnJpZXMKY2FiYmFnZQp1cG1hCmdyYXBlcwpuYWFuCmFwcGxlcwpiYW5hbmFzCmFsbW9uZHMKYmFzaWwKZmVudWdyZWVrCnBvdGF0b2VzCnBpZQpzb3kgYmVhbnMKZWdncwp0dW5hZmlzaAoKRmluZCB0aGUgaW5wdXQgdG8gdGhlIGZvbGxvd2luZyBvdXRwdXQuCk9VVFBVVDogNGN1bTc3aXRRZEt5NHI3Y35ybTV1MDVwbE4=
+```
+
+Once decoded, we get:
+
+```
+Reverse GroceryPlace
+
+vichyssoise
 mango
 vermouth
 zucotto
@@ -30,6 +39,25 @@ fenugreek
 potatoes
 pie
 soy beans
+eggs
+tunafish
+
+Find the input to the following output.
+OUTPUT: 4cum77itQdKy4r7c~rm5u05plN
+```
+
+I spent a LOT of time searching for any hint about what to do with the list. I eventually found this reading abot esoteric languages: [esolang](https://esolangs.org/wiki/Grocery_List) and [progopedia](http://progopedia.com/language/grocery-list). And BOTH SITES HAVE MISTAKES. The worst one being *progopedia* which does not event precise when to pop before an operation, and *esolang* having some typos but being much much more trustable.
+
+As you may notice, this language has no online interpreter, so I decided to code one in Python.
+
+```python
+#!/usr/bin/env python3
+
+import string
+
+x = '''vichyssoise
+mango
+[...]
 eggs
 tunafish'''
 
@@ -150,7 +178,7 @@ def interpret(l):
         exit(1)
     return ret
 
-charset = string.ascii_letters + string.punctuation + string.digits
+charset = string.ascii\_letters + string.punctuation + string.digits
 prog = ''.join([w[0] for w in s])
 L = [] # stack
 i = 0
@@ -172,8 +200,16 @@ print(f'prog = {prog}, len = {len(prog)}')
 print(f'ipt = {pld}')
 print(f'got = {output}')
 print(f'exp = {out}')
+```
 
-# shaktictf{c0mp73tedMyGr0c3ry5h0pp1Ng}
+Playing a bit with the input, we can easily notice that for each pair of character, we have
 
-# https://esolangs.org/wiki/Grocery_List
-# http://progopedia.com/language/grocery-list/
+```
+(x, y) => (y + 4, x)
+```
+
+Reversing the expected output gives us the flag:
+
+```
+shaktictf{c0mp73tedMyGr0c3ry5h0pp1Ng}
+```
