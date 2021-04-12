@@ -15,18 +15,20 @@ This repo contains every files I made during my CTFs. Here is a list of every CT
 - CastorsCTF
 - NahamConCTF
 - CryptoCTF
-- TokyoWesternsCTF (LSE)
+- TokyoWesternsCTF
 - HeroCTF
 
 ## 2021
 
-- McAfeeCTF (LSE)
-- aeroCTF (LSE)
-- zer0ptsCTF (LSE)
-- BSidesSFCTF (LSE)
-- NahamConCTF (LSE)
-- UTCTF (LSE)
+- McAfeeCTF
+- aeroCTF
+- zer0ptsCTF
+- BSidesSFCTF
+- NahamConCTF
+- UTCTF
 - picoCTF
-- SecurinetsQualsCTF (LSE)
-- VolgaCTF (LSE)
-- ShaktiCTF (LSE)
+- SecurinetsQualsCTF
+- VolgaCTF
+- ShaktiCTF
+- ångstromCTF
+- MidnightFlag

@@ -1,0 +1,1 @@
+hey i just retrieved my flag ! lol it was under my bed actf{hello_i_am_the_key_abcdefghijklmnopqrstuvwxyz}

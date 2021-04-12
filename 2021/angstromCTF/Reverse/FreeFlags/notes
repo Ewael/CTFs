@@ -1,0 +1,11 @@
+ghidra
+
+a = 0x7a69
+
+a+b = 0x476
+a*b = 0x49f59
+wolframalpha => 419 and 723
+
+animal = banana
+
+actf{what_do_you_mean_bananas_arent_animals}
