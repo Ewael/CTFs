@@ -1,0 +1,33 @@
+unzip then ewfmout / ewfinfo
+
+mount -o loop,offset=$((1001472*512)) ewf1 /media/disque2
+1001472*512 = 512753664 -> FCSC{1e900000}
+
+ewfmount disque.e01 image
+dd if=image/ewf1 skip=1001472 of=luks_partition
+
+http://blog.dclabs.com.br/2020/03/bruteforcing-linux-disk-encription-luks.html?m=1
+cryptsetup luksDump luks_partition
+once found key
+cryptsetup open --type luks luks_partition partition
+
+dd if=luks_partition of=encrypted_header.crack bs=512 count=4097
+strings encrypted_header.crack | grep -i luks
+
+https://github.com/hashcat/hashcat/issues/2178
+-> hashcat does not support `PBKDF:      argon2i`
+
+https://diverto.github.io/2019/11/18/Cracking-LUKS-passphrases
+
+patch uint json function
+and #define FALSE and TRUE
+
+export DIVERTO_LUKS_VERBOSE=1
+export DIVERTO_LUKS_OUT=./cracked.txt
+
+cat /usr/share/wordlists/words_alpha.txt | /opt/cryptsetup-pwguess/cryptsetup --test-passphrase open luks_partition cracked.txt
+cat /usr/share/wordlists/words_alpha.txt | parallel --pipe -j 2 -N 1000 /opt/cryptsetup-pwguess/cryptsetup --test-passphrase open luks_partition cracked.out
+
+just use autopsy lol -> worst chall
+
+FCSC{0fb01eb22d4f812dcbdfcb}
