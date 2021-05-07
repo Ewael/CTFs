@@ -14,7 +14,7 @@ So we only have a remote service that we can connect to. Let's see if we can abu
 
 It just asks for our name and exits. From there we can imagine 2 possible vulnerabilities: a format string attack using the output with our input and a potential buffer overflow on the name buffer.
 
-### The format string
+### A format string?
 
 The format string vulnerability is a well known vulnerability concerning an unsafe usage of a `printf` function which supports formatting, such as `printf`, `sprintf`, `fprintf`... We will not go into details there because as we will see down below, there are no such vulnerability here, but I highly suggest to check [LiveOverflow video](https://www.youtube.com/watch?v=0WvrSfcdq1I) on the topic to learn more.
 
@@ -37,3 +37,10 @@ char username[SIZE];
 // [...] <--- get input with `scanf` or `gets` or whatever
 printf("Thanks %s\nBye!\n", username); // <--- safe line
 ```
+
+### More like a buffer overflow...
+
+I expect everyone to know this vulnerability, but a quick remainder is never a bad idea. A buffer overflow occurs when the program stocks a user input without checking if the received data fits in the buffer it went in. Because C is a user-responsible language
+
+
+Once again check out [LiveOverflow video](https://www.youtube.com/watch?v=T03idxny9jE) to get the details.
