@@ -124,8 +124,8 @@ This exploit technique uses *gadgets* to execute precise instructions from the b
 For instance, this gadget allows the attacker to control `rdi`, which is the first argument in the [x64 calling convention](https://docs.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-160).
 
 ```asm
-pop rdi ; this pops the following address on the stack into `rdi`
-ret ; we regain execution flow control with the next stack address
+pop rdi     ; this pops the following address on the stack into `rdi`
+ret         ; we regain execution flow control with the next stack address
 ```
 
 A more visual example could be:
