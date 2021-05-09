@@ -119,7 +119,7 @@ Nice, we have the entry point! Now what? We can control where to go, but the que
 
 ## Blind Return Oriented Programming
 
-Also known as BROP, *Blind Return Oriented Programming* is an exploitation technique we use to do *Return Oriented Programming* (ROP) only using the output of the attacked service, acting like an oracle in cryptography attacks. So, what exactly is [ROP](https://en.wikipedia.org/wiki/Return-oriented_programming)?
+Also known as BROP, *Blind Return Oriented Programming* is an exploitation technique we use to do *Return Oriented Programming* (ROP) using only the output of the attacked service, acting like an oracle in cryptography attacks. So, what exactly is [ROP](https://en.wikipedia.org/wiki/Return-oriented_programming)?
 
 ### Return Oriented what?
 
@@ -140,7 +140,7 @@ A more visual example could be:
 
 Thus if we are able to chain gadgets, creating a *ROP chain*, we have a very powerful exploit defeating both ASLR (*Address Space Layout Randomization*) which prevents the attacker to know where to jump in the *libc*, and NX (*No eXecutable*) which prevents shellcode execution on the stack.
 
-Alright alright, this whole ROP stuff is great. But how do we get our gadgets without having access to the binaryy? In a classic ROP challenge we can just disassemble the file to find the interesting ones and the address to return on. How is this possible remotely? This is where things get interesting...
+Alright alright, this whole ROP stuff is great. But how do we get our gadgets without having access to the binary? In a classic ROP challenge we can just disassemble the file to find the interesting ones and the address to return on. How is this possible remotely? This is where things get interesting...
 
 ### The stop gadget
 
@@ -367,7 +367,7 @@ def getPutsAddr(stop_gadget, pop_rdi):
             r.recv(timeout=0.1)
             r.send(pld)
             res = r.recv(timeout=0.1)
-            if b'\x5f\x3c' in res:
+            if b'\x5f' in res:
                 return addr
 
         # nothing found, close socket and continue
@@ -880,7 +880,7 @@ r.close()
 
 ## Conclusion
 
-This by far one the most exciting challenge I've ever done. I know this is just a classic blind ROP execution but that was my first ever and it's definitly worth the try. I can't thank \J enough for his crazy challenges that make everyone better every year.
+This by far one the most exciting challenge I've ever done. I know this is just a classic blind ROP execution but that was my first ever and it's definitly worth the try. I can't thank \J (also known as Cryptanalyse) enough for his crazy challenges that make everyone better every year.
 
 I hope this writeup was clear, I tried to make it as detailed as possible for beginners too, see you next year!
 
