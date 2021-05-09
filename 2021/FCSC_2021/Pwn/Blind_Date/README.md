@@ -113,7 +113,7 @@ for i in offsets:
 
 Those are definitly **x86-64** addresses. Consequently, because the stack buffer overflow happens after 40 bytes, we can deduce that the buffer is 32 bytes big. Indeed we fill the buffer with 32 `A`, then we overwrite `rbp` which is 8 bytes long in **x86-64** and then we can control the execution flow overwriting the `rip` register. We can also see that constant `0x4006cc` address at offset 40 which must be the return address in `rip` that we will overwrite. The fact that this address is constant also proves the [PIE](https://en.wikipedia.org/wiki/Position-independent_code) protection is not enabled.
 
-*Note: we do not exactly overwrite `rip`. We overwrite the return address which is popped into `rip` at the of the function, but it is easier to just say we overwrite `rip`.*
+*Note: we do not exactly overwrite `rip`. We overwrite the return address which is popped into `rip` at the end of the function, but it is easier to just say we overwrite `rip`.*
 
 Nice, we have the entry point! Now what? We can control where to go, but the question is: where do we want to go?
 
