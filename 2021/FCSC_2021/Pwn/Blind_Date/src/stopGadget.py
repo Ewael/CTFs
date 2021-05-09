@@ -7,8 +7,8 @@ base_addr = 0x400000
 L = [] # where we stock out false positives
 
 # custom range to save some time but we first scanned from 0x400000 to 0x410000
-start = 0x500
-end = start + 0x300
+start = 0x0
+end = start + 0x1000
 
 for i in range(start, end):
     # connect to server without logging it
