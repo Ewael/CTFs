@@ -6,4 +6,4 @@ I participated with the LSE team and I spent most of my time on the rev chall. I
 
 ![ctf](ctf.png)
 
-![challs](chall.png)
+![challs](challs.png)
