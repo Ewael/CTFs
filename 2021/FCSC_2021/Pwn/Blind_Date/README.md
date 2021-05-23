@@ -890,4 +890,10 @@ I hope this writeup was clear, I tried to make it as detailed as possible for be
 FCSC{3bf7861167a72f521dd70f704d471bf2be7586b635b40d3e5d50b989dc010f28}
 ```
 
+## Sources
+
+* Image [stack buffer overflow](https://zerobone.net/assets/img/blog/call-stack-buffer-overflow-tmb.jpg)
+* Image [ROP](https://bannedit.github.io/resources/rop.png)
+* Image [BROP gadget](https://raw.githubusercontent.com/nush-osi-layer-8/pwn/master/brop/images/brop_gadget.png)
+
 ~ Ewaël
