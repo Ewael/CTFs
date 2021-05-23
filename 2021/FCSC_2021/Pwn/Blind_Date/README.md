@@ -12,7 +12,7 @@ The France CyberSecurity Challenge (FCSC) had some really interesting challenges
 
 ## Entry point
 
-So we only have a remote service that we can connect to. Let's see if we can abuse it.
+As every in *Capture The Flag* challenges, the goal is to find a flag by abusing a vulnerability. This flag is worth a  certain number of points which increasing with the diffuclty of the challenge. Here we only have a remote service that we can connect to. Let's see how we can abuse it.
 
 ![intro](images/intro.png)
 
@@ -890,10 +890,13 @@ I hope this writeup was clear, I tried to make it as detailed as possible for be
 FCSC{3bf7861167a72f521dd70f704d471bf2be7586b635b40d3e5d50b989dc010f28}
 ```
 
-## Sources
+## To go further...
 
 * Image [stack buffer overflow](https://zerobone.net/assets/img/blog/call-stack-buffer-overflow-tmb.jpg)
 * Image [ROP](https://bannedit.github.io/resources/rop.png)
 * Image [BROP gadget](https://raw.githubusercontent.com/nush-osi-layer-8/pwn/master/brop/images/brop_gadget.png)
+* Writeup [ECSC 2019 ARM BROP by Geluchat](https://www.dailysecurity.fr/blind-rop-arm-securevault-writeup)
+* Writeup [ECW 2020 BROP by Hackira](https://0xswitch.fr/CTF/ecw-2020-pwn-zatoishi)
+* Pwn article on BROP [CTF Wiki](https://wiki.x10sec.org/pwn/linux/stackoverflow/medium-rop/#blind-rop)
 
 ~ Ewaël
