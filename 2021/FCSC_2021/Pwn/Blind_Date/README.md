@@ -8,6 +8,8 @@ The France CyberSecurity Challenge (FCSC) had some really interesting challenges
     <img src="images/chall.png">
 </p>
 
+*A company would like to set up an online service to protect its clients personnal data. Prove them it's not secured enough by reading the `flag.txt` file on their server. They did not share the source code nor the compiled binary. You will have to deal with the remote service only.*
+
 ## Entry point
 
 So we only have a remote service that we can connect to. Let's see if we can abuse it.
