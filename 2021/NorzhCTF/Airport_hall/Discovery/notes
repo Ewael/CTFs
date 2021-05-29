@@ -1,0 +1,7 @@
+ssh port 22 on 172.16.116.17
+
+netdiscover on 10.0.21.0/8
+10.0.6.1        20:9a:7d:cf:22:f8      1      60  Sagemcom Broadband SAS
+10.1.0.2        20:9a:7d:cf:22:f8      1      60  Sagemcom Broadband SAS
+
+NORZH{l3t5_go_!}

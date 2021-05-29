@@ -35,3 +35,5 @@ This repo contains every files I made during my CTFs. Here is a list of every CT
 - PlaidCTF
 - FCSC
 - m0leConTeaserCTF
+- NorzhCTF
+- Pwn2Win
