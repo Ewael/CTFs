@@ -1,0 +1,330 @@
+getsockname(4, {sa_family=AF_INET, sin_port=htons(8000), sin_addr=inet_addr("127.0.0.1")}, [16]) = 0
+mmap(0x817e0000, 20480, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x817e0000
+mprotect(0x817e0000, 20480, PROT_READ)  = 0
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998434})
+read(4, "G", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998910})
+read(4, "E", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999047})
+read(4, "T", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999110})
+read(4, " ", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999099})
+read(4, "/", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999008})
+read(4, " ", 1)                         = 1
+mmap(0x817df000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x817df000
+mprotect(0x817df000, 4096, PROT_READ)   = 0
+mmap(0x817de000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x817de000
+mprotect(0x817de000, 4096, PROT_READ)   = 0
+mmap(0x817dd000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x817dd000
+mprotect(0x817dd000, 4096, PROT_READ)   = 0
+mmap(0x817dc000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x817dc000
+mprotect(0x817dc000, 4096, PROT_READ)   = 0
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998846})
+read(4, "H", 1)                         = 1
+mmap(0x817db000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x817db000
+mprotect(0x817db000, 4096, PROT_READ)   = 0
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998913})
+read(4, "T", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999252})
+read(4, "T", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999132})
+read(4, "P", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999281})
+read(4, "/", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999302})
+read(4, "1", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999281})
+read(4, ".", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999258})
+read(4, "1", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999181})
+read(4, "\r", 1)                        = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999214})
+read(4, "\n", 1)                        = 1
+mmap(0x817da000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x817da000
+mprotect(0x817da000, 4096, PROT_READ)   = 0
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998963})
+read(4, "U", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999213})
+read(4, "s", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999001})
+read(4, "e", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999041})
+read(4, "r", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999108})
+read(4, "-", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999189})
+read(4, "A", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999245})
+read(4, "g", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999245})
+read(4, "e", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999269})
+read(4, "n", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999242})
+read(4, "t", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999257})
+read(4, ":", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999180})
+read(4, " ", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999158})
+read(4, "W", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998760})
+read(4, "g", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999997420})
+read(4, "e", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998751})
+read(4, "t", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998862})
+read(4, "/", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998922})
+read(4, "1", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999246})
+read(4, ".", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999103})
+read(4, "2", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998856})
+read(4, "1", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999201})
+read(4, "\r", 1)                        = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999204})
+read(4, "\n", 1)                        = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999289})
+read(4, "A", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999301})
+read(4, "c", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999346})
+read(4, "c", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999344})
+read(4, "e", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999333})
+read(4, "p", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999340})
+read(4, "t", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999335})
+read(4, ":", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999345})
+read(4, " ", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998880})
+read(4, "*", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998910})
+read(4, "/", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998793})
+read(4, "*", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998900})
+read(4, "\r", 1)                        = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998834})
+read(4, "\n", 1)                        = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998865})
+read(4, "A", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998854})
+read(4, "c", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998854})
+read(4, "c", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998854})
+read(4, "e", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998859})
+read(4, "p", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998042})
+read(4, "t", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998800})
+read(4, "-", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998838})
+read(4, "E", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998060})
+read(4, "n", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998851})
+read(4, "c", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998833})
+read(4, "o", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998087})
+read(4, "d", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998758})
+read(4, "i", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998828})
+read(4, "n", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998830})
+read(4, "g", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998072})
+read(4, ":", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998050})
+read(4, " ", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998089})
+read(4, "i", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998120})
+read(4, "d", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998035})
+read(4, "e", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998809})
+read(4, "n", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998776})
+read(4, "t", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998420})
+read(4, "i", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998931})
+read(4, "t", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998941})
+read(4, "y", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998872})
+read(4, "\r", 1)                        = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999002})
+read(4, "\n", 1)                        = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998998})
+read(4, "H", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998992})
+read(4, "o", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998787})
+read(4, "s", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998940})
+read(4, "t", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998915})
+read(4, ":", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998934})
+read(4, " ", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999038})
+read(4, "l", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999245})
+read(4, "o", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999106})
+read(4, "c", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999247})
+read(4, "a", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999214})
+read(4, "l", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998885})
+read(4, "h", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999052})
+read(4, "o", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999162})
+read(4, "s", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999169})
+read(4, "t", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999173})
+read(4, ":", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999180})
+read(4, "8", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999242})
+read(4, "0", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998685})
+read(4, "0", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998446})
+read(4, "0", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998889})
+read(4, "\r", 1)                        = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999207})
+read(4, "\n", 1)                        = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999286})
+read(4, "C", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999027})
+read(4, "o", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999278})
+read(4, "n", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998676})
+read(4, "n", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998983})
+read(4, "e", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999158})
+read(4, "c", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999159})
+read(4, "t", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998852})
+read(4, "i", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999997909})
+read(4, "o", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998562})
+read(4, "n", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998634})
+read(4, ":", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998760})
+read(4, " ", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998445})
+read(4, "K", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998654})
+read(4, "e", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998532})
+read(4, "e", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998962})
+read(4, "p", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999256})
+read(4, "-", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999238})
+read(4, "A", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999094})
+read(4, "l", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999126})
+read(4, "i", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998984})
+read(4, "v", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999105})
+read(4, "e", 1)                         = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999999048})
+read(4, "\r", 1)                        = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999997649})
+read(4, "\n", 1)                        = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998402})
+read(4, "\r", 1)                        = 1
+pselect6(5, [4], NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=999998756})
+read(4, "\n", 1)                        = 1
+mmap(0x817d9000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x817d9000
+mprotect(0x817d9000, 4096, PROT_READ)   = 0
+mmap(0x817d8000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x817d8000
+mprotect(0x817d8000, 4096, PROT_READ)   = 0
+mmap(0x817d6000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x817d6000
+mprotect(0x817d6000, 8192, PROT_READ)   = 0
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19994328})
+write(4, "H", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19996649})
+write(4, "T", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19997147})
+write(4, "T", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998642})
+write(4, "P", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998487})
+write(4, "/", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998715})
+write(4, "1", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998800})
+write(4, ".", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998805})
+write(4, "0", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998768})
+write(4, " ", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998807})
+write(4, "4", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998710})
+write(4, "0", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998617})
+write(4, "3", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998687})
+write(4, " ", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998686})
+write(4, "F", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998685})
+write(4, "o", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998675})
+write(4, "r", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998738})
+write(4, "b", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998755})
+write(4, "i", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998794})
+write(4, "d", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998682})
+write(4, "d", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998686})
+write(4, "e", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998810})
+write(4, "n", 1)                        = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998760})
+write(4, "\r", 1)                       = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998831})
+write(4, "\n", 1)                       = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998839})
+write(4, "\r", 1)                       = 1
+pselect6(5, NULL, [4], NULL, {tv_sec=0, tv_nsec=20000000}, NULL) = 1 (out [4], left {tv_sec=0, tv_nsec=19998607})
+write(4, "\n", 1)                       = 1
+close(4)                                = 0
+accept4(3, NULL, NULL, SOCK_NONBLOCK
+
