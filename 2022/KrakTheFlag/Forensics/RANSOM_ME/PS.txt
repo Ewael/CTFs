@@ -1,0 +1,1 @@
+Pour des raisons de sécurité le vrai virus se trouve sur mon VPS et le payload va le récuprer et l'executer sur la machine à laquelle tu branches ton petit canard en plastique.

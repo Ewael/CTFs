@@ -1,0 +1,21 @@
+install vol 2
+
+python2 /opt/volatility/vol.py -f dump imageinfo
+-> no profile c ouf
+
+https://i.imgflip.com/6tcpgj.jpg
+grep -rni "w3ll" str*
+W3ll_Don3_
+
+cat str_* |  grep -E "^[a-zA-Z0-9]{1,7}_[a-zA-Z0-9_\!-]{1,10}*_[a-zA-Z0-9]{1,7}$" | grep -E "[a-z]+" | grep -E "[A-Z]+" | grep -E "[0-9]+" | grep -v "KEY" | grep -v "and" | grep -v "DW" | grep -v "ISO" | grep -v "OPEN" | grep -v "X509" | grep -v "fix" | grep -E "^.{0,20}$" | grep -v "__" | sort > sorted.txt
+cat sorted.txt | grep -vi "ztrans\|[ZY]snd\|XS\|wacom\|waxp\|vzone\|V6\|x509\|video\|utf\|unum" | uniq | grep -vi "vattu\|v2i\|uregex\|PK\|vol\|utrie\|trans\|text\|term\|strTo\|uset" > uniq.txt
+cat str* | grep -E "^[a-zA-Z0-9]{1}_([a-zA-Z0-9_\!-]{1,10})*[a-zA-Z0-9]{1}$" > matches.txt
+-> nothing...
+
+grep -rni "/\.face" str_*
+You_G0t_1t_
+
+cat str* | grep -E "}$" | grep -E "^[a-zA-Z0-9_\!-]{8,}}$"
+_You_ARE_4_pr0}
+
+HDCTF{W3ll_Don3_You_G0t_1t__You_ARE_4_pr0}

@@ -1,0 +1,3 @@
+flag format : HDCTF{host:port|mail:password}
+
+HDCTF{smtp://smtp.gmail.com:587|evilMail@gmail.com:SUP3R_S3CUR3_P4SS!}
